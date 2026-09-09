@@ -1,4 +1,4 @@
-export const CHECKOUT_URL = '#';
+export const CHECKOUT_URL = 'https://pay.hotmart.com/B107481527Q?off=epitxrsl';
 export const DOWNSELL_CHECKOUT_URL = '#';
 
 export const ASSETS = {
