@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
 import { ASSETS } from '../data/quizData';
+import { trackVSLPlay } from '../utils/pixel';
 
 // Target duration in seconds of video playback to reach 100% (fast paced sensation)
 const TARGET_PLAYED_SECONDS_FOR_100 = 12.0;
@@ -96,7 +97,10 @@ export default function VSLStep({ onContinue }) {
   const handleActivateAndPlay = () => {
     if (!videoRef.current) return;
 
-    videoRef.current.currentTime = 0;
+    // Only restart from 0:00 on the first activation; later taps just unmute
+    if (!isLoaderActive) {
+      videoRef.current.currentTime = 0;
+    }
     videoRef.current.muted = false;
     setIsMuted(false);
     setIsLoaderActive(true);

@@ -15,18 +15,17 @@ export default function AnalyzingStep({ onComplete }) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(() => onComplete(), 300);
-          return 100;
-        }
-        return prev + 1;
-      });
+      setProgress((prev) => Math.min(100, prev + 1));
     }, 22);
 
     return () => clearInterval(timer);
-  }, [onComplete]);
+  }, []);
+
+  useEffect(() => {
+    if (progress < 100) return;
+    const doneTimer = setTimeout(() => onComplete(), 300);
+    return () => clearTimeout(doneTimer);
+  }, [progress, onComplete]);
 
   useEffect(() => {
     if (progress > 25 && activeCheckIndex < 1) setActiveCheckIndex(1);

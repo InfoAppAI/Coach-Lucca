@@ -28,7 +28,7 @@ export default function ResultStep({ userAnswers }) {
     { name: 'Juliana M.', city: 'Madrid - España', time: 'hace 1 min' },
     { name: 'Carolina R.', city: 'Buenos Aires - Argentina', time: 'hace 2 min' },
     { name: 'Fernanda S.', city: 'Ciudad de México - México', time: 'hace 3 min' },
-    { name: 'Patrícia A.', city: 'Bogotá - Colombia', time: 'hace 4 min' },
+    { name: 'Patricia A.', city: 'Bogotá - Colombia', time: 'hace 4 min' },
   ];
 
   useEffect(() => {

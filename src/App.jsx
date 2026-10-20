@@ -646,7 +646,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFF5F8] via-[#FAF0F6] to-[#F5EBF2] font-body text-[#2B0B2E] antialiased selection:bg-[#FF2A85] selection:text-white">
-      {renderCurrentStep()}
+      <React.Fragment key={`step-${currentSlug}`}>{renderCurrentStep()}</React.Fragment>
       <ScrollIndicator key={currentSlug} />
     </div>
   );

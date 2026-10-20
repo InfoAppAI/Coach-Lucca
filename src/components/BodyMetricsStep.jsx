@@ -162,7 +162,7 @@ export default function BodyMetricsStep({ stepData, onNext, onPrevStep, currentS
                   <input
                     type="range"
                     min="140"
-                    max="200"
+                    max="210"
                     value={height}
                     onChange={(e) => setHeight(Number(e.target.value))}
                     className="w-full h-2.5 bg-[#EED4E4] rounded-lg appearance-none cursor-pointer accent-[#FF2A85]"
@@ -228,7 +228,7 @@ export default function BodyMetricsStep({ stepData, onNext, onPrevStep, currentS
                   <input
                     type="range"
                     min="40"
-                    max="120"
+                    max="140"
                     value={weight}
                     onChange={(e) => setWeight(Number(e.target.value))}
                     className="w-full h-2.5 bg-[#EED4E4] rounded-lg appearance-none cursor-pointer accent-[#FF2A85]"

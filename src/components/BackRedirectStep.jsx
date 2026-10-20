@@ -183,7 +183,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading flex items-center gap-1">
-                    <span>🎁 BÔNUS: SOS Celulite & Efeito Push-Up 14D</span>
+                    <span>🎁 BONO: SOS Celulitis & Efecto Push-Up 14D</span>
                   </h3>
                   <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$29.00</span>
                 </div>
@@ -201,7 +201,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading flex items-center gap-1">
-                    <span>🎁 BÔNUS: Guía de Tés Metabólicos Quema-Grasa</span>
+                    <span>🎁 BONO: Guía de Tés Metabólicos Quema-Grasa</span>
                   </h3>
                   <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$19.00</span>
                 </div>
@@ -275,7 +275,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                 </span>
               </div>
               <p className="text-[10px] text-[#91798E] font-medium">
-                Acceso Vitalício + Todas las Actualizaciones Futuras Incluidas
+                Acceso Vitalicio + Todas las Actualizaciones Futuras Incluidas
               </p>
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                <span>Guía Nutricional Anti-Flacidez + Todos los Bônus</span>
+                <span>Guía Nutricional Anti-Flacidez + Todos los Bonos</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
