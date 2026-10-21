@@ -21,6 +21,8 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('login failed:', error.message);
     const status = error instanceof HotmartUnavailableError ? 503 : 500;
-    return res.status(status).json({ error: 'verification_unavailable' });
+    // Preview deployments explain the failure (variable names / HTTP status only, never values)
+    const detail = process.env.VERCEL_ENV === 'production' ? undefined : error.message;
+    return res.status(status).json({ error: 'verification_unavailable', detail });
   }
 }
