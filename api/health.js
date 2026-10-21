@@ -1,4 +1,4 @@
-import { checkHotmartToken, checkSalesLookup } from './_lib/hotmart.js';
+import { checkHotmartToken, checkSalesLookup, probeSalesParams } from './_lib/hotmart.js';
 
 const REQUIRED = [
   'HOTMART_CLIENT_ID',
@@ -36,5 +36,14 @@ export default async function handler(req, res) {
     }
   }
 
-  return res.status(200).json({ variables, hotmart, sales });
+  let probe;
+  if (hotmart === 'ok' && sales !== 'ok') {
+    try {
+      probe = await probeSalesParams();
+    } catch (error) {
+      probe = error.message;
+    }
+  }
+
+  return res.status(200).json({ variables, hotmart, sales, probe });
 }

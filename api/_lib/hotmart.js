@@ -54,6 +54,31 @@ export async function checkSalesLookup() {
   await fetchSales('setup-check@example.com', requireEnv('HOTMART_PRODUCT_ID'));
 }
 
+/** Tries the sales query with different parameter sets and reports Hotmart's status for each. */
+export async function probeSalesParams() {
+  const token = await getAccessToken();
+  const base = API_BASE[process.env.HOTMART_ENV === 'sandbox' ? 'sandbox' : 'production'];
+  const email = 'setup-check@example.com';
+  const productId = requireEnv('HOTMART_PRODUCT_ID');
+  const now = Date.now();
+  const variants = {
+    email_only: { buyer_email: email },
+    email_product: { buyer_email: email, product_id: productId },
+    email_product_dates_2024: { buyer_email: email, product_id: productId, start_date: String(HISTORY_START), end_date: String(now) },
+    email_product_dates_1y: { buyer_email: email, product_id: productId, start_date: String(now - 365 * 864e5), end_date: String(now) },
+    email_product_max50: { buyer_email: email, product_id: productId, max_results: '50' },
+    product_only: { product_id: productId },
+  };
+  const results = {};
+  for (const [name, params] of Object.entries(variants)) {
+    const res = await fetch(`${base}/payments/api/v1/sales/history?${new URLSearchParams(params)}`, {
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    });
+    results[name] = res.ok ? 'ok' : `${res.status} ${(await res.text()).slice(0, 120)}`;
+  }
+  return results;
+}
+
 async function fetchSales(email, productId) {
   const token = await getAccessToken();
   const base = API_BASE[process.env.HOTMART_ENV === 'sandbox' ? 'sandbox' : 'production'];
