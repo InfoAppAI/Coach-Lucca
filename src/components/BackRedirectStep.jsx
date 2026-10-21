@@ -295,7 +295,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             {/* Guarantee Callout */}
             <div className="flex items-center justify-center gap-1.5 text-xs text-[#059669] bg-[#ECFDF5] border border-[#10B981]/40 py-2 px-3 rounded-xl font-black font-heading">
               <ShieldCheck className="w-4 h-4 text-[#059669] shrink-0" />
-              <span>Garantía Incondicional de 30 Días • Riesgo Cero</span>
+              <span>Garantía Incondicional de 7 Días • Riesgo Cero</span>
             </div>
           </div>
 
@@ -324,15 +324,15 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             </div>
           </div>
 
-          {/* 30 DAYS GUARANTEE CARD */}
+          {/* 7 DAYS GUARANTEE CARD */}
           <div className="bg-[#ECFDF5] rounded-2xl p-4 border border-[#10B981]/40 text-left flex items-start gap-3 shadow-2xs">
             <Award className="w-10 h-10 text-[#059669] shrink-0 mt-0.5" />
             <div className="space-y-1">
               <h4 className="text-xs sm:text-sm font-black text-[#065F46] font-heading">
-                Garantía Blindada de Satisfacción Total (30 Días)
+                Garantía Blindada de Satisfacción Total (7 Días)
               </h4>
               <p className="text-[11px] text-[#065F46] leading-relaxed">
-                Prueba el método por 30 días enteros. Si por cualquier motivo sientes que no es para ti o no ves tus glúteos más levantados y firmes, solo envía un mensaje y te reembolsamos el 100% de tu dinero inmediatamente.
+                Prueba el método por 7 días enteros. Si por cualquier motivo sientes que no es para ti o no ves tus glúteos más levantados y firmes, solo envía un mensaje y te reembolsamos el 100% de tu dinero inmediatamente.
               </p>
             </div>
           </div>
@@ -435,7 +435,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                <span>Garantía Total de 30 Días (Riesgo Cero)</span>
+                <span>Garantía Total de 7 Días (Riesgo Cero)</span>
               </div>
             </div>
 
