@@ -3,6 +3,7 @@ import {
   RECHECK_AFTER_MS,
   clearSessionCookie,
   createSessionCookie,
+  publicSession,
   readSession,
 } from './_lib/session.js';
 
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
   if (!session) return res.status(401).json({ error: 'not_logged_in' });
 
   if (Date.now() - session.checkedAt < RECHECK_AFTER_MS) {
-    return res.status(200).json({ email: session.email, name: session.name, hasUpsell: session.hasUpsell });
+    return res.status(200).json(publicSession(session));
   }
 
   try {
@@ -24,11 +25,11 @@ export default async function handler(req, res) {
     }
     const refreshed = { email: session.email, name: purchase.name, hasUpsell: purchase.hasUpsell };
     res.setHeader('Set-Cookie', createSessionCookie(refreshed));
-    return res.status(200).json(refreshed);
+    return res.status(200).json(publicSession(refreshed));
   } catch (error) {
     if (!(error instanceof HotmartUnavailableError)) throw error;
     // Hotmart is down: keep the student in, the next request re-checks
     console.error('session recheck failed:', error.message);
-    return res.status(200).json({ email: session.email, name: session.name, hasUpsell: session.hasUpsell });
+    return res.status(200).json(publicSession(session));
   }
 }

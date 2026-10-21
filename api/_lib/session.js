@@ -54,6 +54,12 @@ export function readSession(req) {
   }
 }
 
+/** Session data sent to the browser. The VIP group link is only revealed to Acelerador buyers. */
+export function publicSession({ email, name, hasUpsell }) {
+  const vipGroupUrl = hasUpsell ? process.env.VIP_GROUP_URL || undefined : undefined;
+  return { email, name, hasUpsell, vipGroupUrl };
+}
+
 export function normalizeEmail(value) {
   const email = String(value || '').trim().toLowerCase();
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254 ? email : null;

@@ -4,6 +4,7 @@ export interface ServerSession {
   email: string;
   name?: string;
   hasUpsell: boolean;
+  vipGroupUrl?: string; // only sent by the server to Acelerador buyers
 }
 
 export type LoginResult =
@@ -44,6 +45,9 @@ export async function logout(): Promise<void> {
     // ignore: the cookie expires on its own
   }
 }
+
+// Shows the "Comunidad VIP" bonus on the upsell page. Turn on once VIP_GROUP_URL is set in Vercel.
+export const VIP_GROUP_ENABLED = false;
 
 // Public (non-secret) checkout link for buying the Acelerador from inside the app
 export const UPSELL_CHECKOUT_URL: string =

@@ -1,5 +1,5 @@
 import { HotmartUnavailableError, verifyPurchase } from './_lib/hotmart.js';
-import { createSessionCookie, normalizeEmail } from './_lib/session.js';
+import { createSessionCookie, normalizeEmail, publicSession } from './_lib/session.js';
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
     const session = { email, name: purchase.name, hasUpsell: purchase.hasUpsell };
     res.setHeader('Set-Cookie', createSessionCookie(session));
-    return res.status(200).json(session);
+    return res.status(200).json(publicSession(session));
   } catch (error) {
     console.error('login failed:', error.message);
     const status = error instanceof HotmartUnavailableError ? 503 : 500;

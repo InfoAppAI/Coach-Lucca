@@ -19,6 +19,7 @@ const CHECKLIST_KEY = 'coach_gluteos_linfatico_14d';
 interface AceleradorModalProps {
   onClose: () => void;
   onOpenCookbook: () => void;
+  vipGroupUrl?: string;
 }
 
 function loadChecklist(): boolean[] {
@@ -31,7 +32,7 @@ function loadChecklist(): boolean[] {
   return Array(14).fill(false);
 }
 
-export function AceleradorModal({ onClose, onOpenCookbook }: AceleradorModalProps) {
+export function AceleradorModal({ onClose, onOpenCookbook, vipGroupUrl }: AceleradorModalProps) {
   const [section, setSection] = useState<Section>('noche');
   const [routineId, setRoutineId] = useState(NIGHT_ROUTINES[0].id);
   const [checklist, setChecklist] = useState<boolean[]>(loadChecklist);
@@ -102,6 +103,18 @@ export function AceleradorModal({ onClose, onOpenCookbook }: AceleradorModalProp
         </div>
 
         <div className="overflow-y-auto p-4 space-y-4">
+          {vipGroupUrl && (
+            <a
+              href={vipGroupUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-button no-underline"
+            >
+              <span>💬 Entrar a la Comunidad VIP de Alumnas</span>
+              <span className="button-sheen" />
+            </a>
+          )}
+
           {section === 'noche' && (
             <>
               <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed">

@@ -542,6 +542,7 @@ export default function App() {
         <AceleradorModal
           onClose={() => handleSlugNavigation('/inicio')}
           onOpenCookbook={() => handleSlugNavigation('/receitas')}
+          vipGroupUrl={serverSession?.vipGroupUrl}
         />
       )}
     </div>

@@ -3,6 +3,7 @@ import { uiAudio } from '../utils/audioEngine';
 import { UserSession } from '../types';
 import { SoundControl } from './SoundControl';
 import { HotmartFunnelWidget, HOTMART_FUNNEL_ID } from './HotmartFunnelWidget';
+import { VIP_GROUP_ENABLED } from '../utils/auth';
 import {
   Sparkles,
   ShieldCheck,
@@ -393,6 +394,7 @@ export function UpsellPage({
             </div>
 
             {/* SUPER BONUS CARD (SPANNING BOTH COLUMNS ON DESKTOP) */}
+            {VIP_GROUP_ENABLED && (
             <div className="col-span-1 md:col-span-2 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#FFF9E6] via-[#FFF3D1] to-[#FFE600]/40 border-2.5 border-[#FF3377] shadow-[5px_5px_0_#2B0B2E] flex flex-col sm:flex-row items-center gap-4">
               <div className="w-14 h-14 rounded-2xl bg-[#FF3377] text-white flex items-center justify-center font-black border-2 border-[#2B0B2E] flex-shrink-0 shadow-[3px_3px_0_#2B0B2E]">
                 <Gift className="w-8 h-8 stroke-[2.5]" />
@@ -405,13 +407,14 @@ export function UpsellPage({
                   <span className="text-xs sm:text-sm font-black text-[#00A859]">100% Gratis</span>
                 </div>
                 <h4 className="font-display font-black text-base sm:text-lg text-[#2B0B2E] leading-tight mt-1">
-                  Comunidad Secreta VIP de Alumnas + Soporte Nutricional
+                  Comunidad Secreta VIP de Alumnas
                 </h4>
                 <p className="text-xs sm:text-sm text-[#6C586B] mt-0.5">
-                  Acceso al grupo exclusivo de motivación, fotos de evolución semanal y acompañamiento continuo.
+                  Acceso al grupo exclusivo de alumnas para motivación y fotos de evolución.
                 </p>
               </div>
             </div>
+            )}
           </div>
         </section>
 
