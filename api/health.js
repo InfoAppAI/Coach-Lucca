@@ -1,4 +1,4 @@
-import { checkHotmartToken } from './_lib/hotmart.js';
+import { checkHotmartToken, checkSalesLookup } from './_lib/hotmart.js';
 
 const REQUIRED = [
   'HOTMART_CLIENT_ID',
@@ -26,5 +26,15 @@ export default async function handler(req, res) {
     hotmart = error.message;
   }
 
-  return res.status(200).json({ variables, hotmart });
+  let sales = 'skipped';
+  if (hotmart === 'ok') {
+    try {
+      await checkSalesLookup();
+      sales = 'ok';
+    } catch (error) {
+      sales = error.message;
+    }
+  }
+
+  return res.status(200).json({ variables, hotmart, sales });
 }

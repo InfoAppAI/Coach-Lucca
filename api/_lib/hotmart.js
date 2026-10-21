@@ -33,7 +33,10 @@ async function getAccessToken() {
     // Accept the value pasted with or without the "Basic " prefix shown by Hotmart
     headers: { Authorization: `Basic ${requireEnv('HOTMART_BASIC').replace(/^Basic\s+/i, '').trim()}` },
   });
-  if (!res.ok) throw new HotmartUnavailableError(`Hotmart token request failed (${res.status})`);
+  if (!res.ok) {
+    const body = (await res.text()).slice(0, 300);
+    throw new HotmartUnavailableError(`Hotmart token request failed (${res.status}): ${body}`);
+  }
 
   const data = await res.json();
   cachedToken = { value: data.access_token, expiresAt: Date.now() + data.expires_in * 1000 };
@@ -44,6 +47,11 @@ async function getAccessToken() {
 export async function checkHotmartToken() {
   cachedToken = null;
   await getAccessToken();
+}
+
+/** Runs a sales lookup for an address that has no purchases (used by the preview setup check). */
+export async function checkSalesLookup() {
+  await fetchSales('setup-check@example.com', requireEnv('HOTMART_PRODUCT_ID'));
 }
 
 async function fetchSales(email, productId) {
@@ -66,7 +74,10 @@ async function fetchSales(email, productId) {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     });
     if (res.status === 401) cachedToken = null;
-    if (!res.ok) throw new HotmartUnavailableError(`Hotmart sales request failed (${res.status})`);
+    if (!res.ok) {
+      const body = (await res.text()).slice(0, 300);
+      throw new HotmartUnavailableError(`Hotmart sales request failed (${res.status}): ${body}`);
+    }
 
     const data = await res.json();
     items.push(...(data.items || []));
