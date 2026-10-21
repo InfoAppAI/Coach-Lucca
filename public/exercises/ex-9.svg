@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#19041C" />
+      <stop offset="50%" stop-color="#2B0B2E" />
+      <stop offset="100%" stop-color="#140217" />
+    </linearGradient>
+
+    <linearGradient id="gymFloorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3D1242" />
+      <stop offset="100%" stop-color="#1E0720" />
+    </linearGradient>
+
+    <filter id="neonGlute" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix type="matrix" values="1 0 0 0 1  0 0.2 0 0 0.2  0 0 0.5 0 0.4  0 0 0 1.4 0" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.04" />
+    </pattern>
+  </defs>
+
+  <!-- Fundo do Ginásio Flat -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+  <rect width="800" height="450" fill="url(#gridPattern)" />
+
+  <!-- Cenário do Ginásio Flat (Rack, Iluminação) -->
+  <g opacity="0.12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round">
+    <line x1="120" y1="80" x2="120" y2="350" />
+    <line x1="220" y1="80" x2="220" y2="350" />
+    <line x1="100" y1="120" x2="240" y2="120" />
+    <line x1="100" y1="200" x2="240" y2="200" />
+    <line x1="680" y1="160" x2="680" y2="350" />
+    <line x1="740" y1="160" x2="740" y2="350" />
+    <line x1="660" y1="200" x2="760" y2="200" />
+    <line x1="660" y1="260" x2="760" y2="260" />
+    <line x1="660" y1="310" x2="760" y2="310" />
+  </g>
+
+  <!-- Piso Flat -->
+  <polygon points="0,340 800,340 800,450 0,450" fill="url(#gymFloorGrad)" />
+  <line x1="0" y1="340" x2="800" y2="340" stroke="#FF3377" stroke-width="2.5" opacity="0.5" />
+  <line x1="220" y1="340" x2="140" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+  <line x1="440" y1="340" x2="420" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+  <line x1="620" y1="340" x2="680" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+
+  <!-- Sombra no Chão sob a Atleta -->
+  <ellipse cx="400" cy="348" rx="190" ry="14" fill="#120215" opacity="0.7" />
+
+  <!-- Conteúdo do Exercício (Vetor Flat) -->
+  <g id="illustration">
+    
+      <!-- Banco Inclinado de Perfil -->
+      <rect x="230" y="250" width="130" height="90" rx="6" fill="#3D1242" stroke="#2B0B2E" stroke-width="3" />
+      <line x1="245" y1="340" x2="245" y2="350" stroke="#1F0822" stroke-width="8" stroke-linecap="round" />
+      <line x1="345" y1="340" x2="345" y2="350" stroke="#1F0822" stroke-width="8" stroke-linecap="round" />
+      <rect x="220" y="245" width="150" height="18" rx="4" fill="#A7FF00" opacity="0.9" />
+
+      <!-- Atleta Sentada Inclinada 45° al Frente -->
+      <!-- Pélvis Sentada con Glúteo Medio en Foco -->
+      <g filter="url(#neonGlute)">
+        <ellipse cx="340" cy="245" rx="34" ry="24" fill="#FF3377" />
+        <path d="M 320 230 Q 360 225 375 250 Q 345 265 320 255 Z" fill="#FF0055" />
+      </g>
+      <text x="330" y="250" fill="#FFFFFF" font-family="Arial" font-size="12" font-weight="bold">🍑</text>
+
+      <!-- Torso Inclinado 45° al Frente -->
+      <line x1="330" y1="240" x2="420" y2="165" stroke="#EC4899" stroke-width="28" stroke-linecap="round" />
+      <circle cx="445" cy="145" r="16" fill="#E8B088" />
+      <path d="M 435 130 C 450 125 460 135 455 155 C 450 165 430 170 425 160 Z" fill="#2E1B15" />
+
+      <!-- Pernas Abertas con Miniband em Tensão Máxima -->
+      <line x1="350" y1="250" x2="450" y2="260" stroke="#1F2937" stroke-width="24" stroke-linecap="round" />
+      <line x1="450" y1="260" x2="465" y2="345" stroke="#1F2937" stroke-width="20" stroke-linecap="round" />
+      <path d="M 450 345 L 490 345 L 485 335 L 460 335 Z" fill="#FFFFFF" stroke="#00F0FF" stroke-width="3" />
+
+      <!-- Banda Elástica Miniband Fluorescente nos Joelhos -->
+      <rect x="425" y="248" width="45" height="14" rx="4" fill="#FFE600" stroke="#2B0B2E" stroke-width="2" />
+      <text x="432" y="259" fill="#2B0B2E" font-family="sans-serif" font-size="9" font-weight="900">BAND</text>
+
+      <!-- Flecha de Abertura Lateral -->
+      <line x1="450" y1="260" x2="520" y2="260" stroke="#A7FF00" stroke-width="3" stroke-dasharray="3 2" />
+      <polygon points="528,260 516,255 516,265" fill="#A7FF00" />
+      <text x="480" y="248" fill="#A7FF00" font-family="sans-serif" font-size="10" font-weight="bold">ABRE 45°</text>
+    
+  </g>
+
+  <!-- Top Badges Flat -->
+  <g transform="translate(30, 24)">
+    <rect x="0" y="0" width="180" height="28" rx="14" fill="#2B0B2E" stroke="#FF3377" stroke-width="1.5" />
+    <circle cx="14" cy="14" r="4.5" fill="#A7FF00" />
+    <text x="28" y="18" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="900" letter-spacing="0.5">ESTACIÓN 9 · GLÚTEO MEDIO & MENOR</text>
+  </g>
+
+  <g transform="translate(630, 24)">
+    <rect x="0" y="0" width="140" height="28" rx="14" fill="#19041C" stroke="#FFE600" stroke-width="1.5" />
+    <circle cx="14" cy="14" r="4.5" fill="#FF3377" filter="url(#neonGlute)" />
+    <text x="28" y="18" fill="#FFE600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.5">GUÍA TÉCNICA FLAT</text>
+  </g>
+
+  <!-- Barra de Título Inferior Flat -->
+  <g transform="translate(30, 412)">
+    <rect x="0" y="-20" width="460" height="30" rx="8" fill="#18041B" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+    <text x="14" y="0" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800">Abducciones en Banco a 45° con Mini Band</text>
+  </g>
+</svg>

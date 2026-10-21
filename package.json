@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && npm --prefix app ci --no-audit --no-fund && npm --prefix app run build",
+    "preview": "vite preview",
+    "dev:app": "npm --prefix app run dev"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#19041C" />
+      <stop offset="50%" stop-color="#2B0B2E" />
+      <stop offset="100%" stop-color="#140217" />
+    </linearGradient>
+
+    <linearGradient id="gymFloorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3D1242" />
+      <stop offset="100%" stop-color="#1E0720" />
+    </linearGradient>
+
+    <filter id="neonGlute" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix type="matrix" values="1 0 0 0 1  0 0.2 0 0 0.2  0 0 0.5 0 0.4  0 0 0 1.4 0" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.04" />
+    </pattern>
+  </defs>
+
+  <!-- Fundo do Ginásio Flat -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+  <rect width="800" height="450" fill="url(#gridPattern)" />
+
+  <!-- Cenário do Ginásio Flat (Rack, Iluminação) -->
+  <g opacity="0.12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round">
+    <line x1="120" y1="80" x2="120" y2="350" />
+    <line x1="220" y1="80" x2="220" y2="350" />
+    <line x1="100" y1="120" x2="240" y2="120" />
+    <line x1="100" y1="200" x2="240" y2="200" />
+    <line x1="680" y1="160" x2="680" y2="350" />
+    <line x1="740" y1="160" x2="740" y2="350" />
+    <line x1="660" y1="200" x2="760" y2="200" />
+    <line x1="660" y1="260" x2="760" y2="260" />
+    <line x1="660" y1="310" x2="760" y2="310" />
+  </g>
+
+  <!-- Piso Flat -->
+  <polygon points="0,340 800,340 800,450 0,450" fill="url(#gymFloorGrad)" />
+  <line x1="0" y1="340" x2="800" y2="340" stroke="#FF3377" stroke-width="2.5" opacity="0.5" />
+  <line x1="220" y1="340" x2="140" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+  <line x1="440" y1="340" x2="420" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+  <line x1="620" y1="340" x2="680" y2="450" stroke="#FFFFFF" stroke-width="1.5" opacity="0.08" />
+
+  <!-- Sombra no Chão sob a Atleta -->
+  <ellipse cx="400" cy="348" rx="190" ry="14" fill="#120215" opacity="0.7" />
+
+  <!-- Conteúdo do Exercício (Vetor Flat) -->
+  <g id="illustration">
+    
+      <!-- Atleta en Bisagra de Cadera (RDL) -->
+      <!-- Pélvis Desplazada Hacia Atrás -->
+      <g filter="url(#neonGlute)">
+        <ellipse cx="340" cy="210" rx="36" ry="26" fill="#FF3377" />
+        <path d="M 315 195 Q 355 190 375 215 Q 345 235 315 220 Z" fill="#FF0055" />
+      </g>
+      <text x="330" y="215" fill="#FFFFFF" font-family="Arial" font-size="12" font-weight="bold">🍑</text>
+
+      <!-- Torso Inclinado Horizontal a 45° -->
+      <line x1="350" y1="205" x2="460" y2="175" stroke="#10B981" stroke-width="28" stroke-linecap="round" />
+      <circle cx="485" cy="165" r="16" fill="#E8B088" />
+      <path d="M 475 150 C 490 145 500 155 495 175 C 490 185 470 190 465 180 Z" fill="#3B1D0E" />
+
+      <!-- Pierna de Apoyo (Espinilla 100% Vertical) -->
+      <line x1="365" y1="225" x2="380" y2="270" stroke="#1F2937" stroke-width="26" stroke-linecap="round" />
+      <line x1="380" y1="270" x2="380" y2="345" stroke="#1F2937" stroke-width="20" stroke-linecap="round" />
+      <path d="M 365 345 L 405 345 L 400 335 L 375 335 Z" fill="#FFFFFF" stroke="#FF6B00" stroke-width="3" />
+
+      <!-- Pierna Trasera en Trípode (Punta Apoiada Atrás) -->
+      <line x1="345" y1="220" x2="290" y2="280" stroke="#111827" stroke-width="18" stroke-linecap="round" />
+      <line x1="290" y1="280" x2="270" y2="345" stroke="#111827" stroke-width="16" stroke-linecap="round" />
+      <circle cx="270" cy="345" r="6" fill="#FFFFFF" />
+
+      <!-- Brazos con Mancuerna Bajando Pegada a la Espinilla -->
+      <line x1="450" y1="185" x2="430" y2="285" stroke="#E8B088" stroke-width="12" stroke-linecap="round" />
+      <rect x="415" y="275" width="30" height="24" rx="4" fill="#0F172A" stroke="#94A3B8" stroke-width="2" />
+      <text x="422" y="291" fill="#A7FF00" font-family="sans-serif" font-size="9" font-weight="900">18K</text>
+
+      <!-- Flecha de Empuje de Cadera Hacia Atrás -->
+      <line x1="370" y1="190" x2="280" y2="190" stroke="#00F0FF" stroke-width="3" stroke-dasharray="4 2" />
+      <polygon points="272,190 284,185 284,195" fill="#00F0FF" />
+      <text x="270" y="175" fill="#00F0FF" font-family="sans-serif" font-size="11" font-weight="bold">CADERA ATRÁS</text>
+    
+  </g>
+
+  <!-- Top Badges Flat -->
+  <g transform="translate(30, 24)">
+    <rect x="0" y="0" width="180" height="28" rx="14" fill="#2B0B2E" stroke="#FF3377" stroke-width="1.5" />
+    <circle cx="14" cy="14" r="4.5" fill="#A7FF00" />
+    <text x="28" y="18" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="900" letter-spacing="0.5">ESTACIÓN 6 · GLÚTEO & ISQUIOS</text>
+  </g>
+
+  <g transform="translate(630, 24)">
+    <rect x="0" y="0" width="140" height="28" rx="14" fill="#19041C" stroke="#FFE600" stroke-width="1.5" />
+    <circle cx="14" cy="14" r="4.5" fill="#FF3377" filter="url(#neonGlute)" />
+    <text x="28" y="18" fill="#FFE600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.5">GUÍA TÉCNICA FLAT</text>
+  </g>
+
+  <!-- Barra de Título Inferior Flat -->
+  <g transform="translate(30, 412)">
+    <rect x="0" y="-20" width="460" height="30" rx="8" fill="#18041B" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+    <text x="14" y="0" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800">Peso Muerto Rumano Unilateral (RDL)</text>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(vip-ukyvpucxeh|area-4yvj848l4g)", "destination": "/_m/index.html" },
+    { "source": "/(vip-ukyvpucxeh|area-4yvj848l4g)/", "destination": "/_m/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(vip-ukyvpucxeh|area-4yvj848l4g|_m|api)(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/(vip-ukyvpucxeh|area-4yvj848l4g)(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ]
+}
