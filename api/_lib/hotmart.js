@@ -40,6 +40,12 @@ async function getAccessToken() {
   return cachedToken.value;
 }
 
+/** Throws when Hotmart rejects the credentials (used by the preview setup check). */
+export async function checkHotmartToken() {
+  cachedToken = null;
+  await getAccessToken();
+}
+
 async function fetchSales(email, productId) {
   const token = await getAccessToken();
   const base = API_BASE[process.env.HOTMART_ENV === 'sandbox' ? 'sandbox' : 'production'];
