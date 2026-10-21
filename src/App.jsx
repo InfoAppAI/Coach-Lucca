@@ -13,6 +13,7 @@ import CouponStep from './components/CouponStep';
 import ResultStep from './components/ResultStep';
 import BackRedirectStep from './components/BackRedirectStep';
 import { QUIZ_STEPS, ASSETS } from './data/quizData';
+import { captureAndPersistUTMs, trackLead, trackOfferView, trackQuizStart } from './utils/pixel';
 
 import ScrollIndicator from './components/ScrollIndicator';
 
@@ -241,26 +242,40 @@ export default function App() {
   const currentStepData = QUIZ_STEPS[currentStepIndex] || QUIZ_STEPS[0];
   const isNavigating = useRef(false);
 
-  // INSTANT IMAGE & GIF PRELOADER IN BROWSER MEMORY
+  // Keep the ad's UTMs for the checkout links
   useEffect(() => {
-    const urlsToPreload = [
+    captureAndPersistUTMs();
+  }, []);
+
+  // Funnel events for the Meta Pixel (each fires once per visit)
+  useEffect(() => {
+    if (showSummary) trackLead();
+    if (isFinished) trackOfferView('main');
+  }, [showSummary, isFinished]);
+
+  // STAGED PRELOADER: light images for the next quiz steps right away; the heavy sales GIF
+  // only once the visitor is close to the offer, so the first screen loads fast on 4G
+  useEffect(() => {
+    [
       ASSETS.logo,
-      ASSETS.vslCover,
-      ASSETS.gifs?.sales1,
-      ASSETS.gifs?.fit1,
-      ASSETS.gifs?.homeFit,
       ASSETS.coach?.main,
       ASSETS.coach?.alt,
       ...Object.values(ASSETS.ages || {}),
       ...(ASSETS.results || [])
-    ];
-    urlsToPreload.forEach((url) => {
+    ].forEach((url) => {
       if (url) {
         const img = new Image();
         img.src = url;
       }
     });
   }, []);
+
+  const isNearOffer = showSummary || isAnalyzing || isVSLStep || isCouponStep || currentStepIndex >= QUIZ_STEPS.length - 3;
+  useEffect(() => {
+    if (!isNearOffer || !ASSETS.gifs?.sales1) return;
+    const img = new Image();
+    img.src = ASSETS.gifs.sales1;
+  }, [isNearOffer]);
 
   // COMPUTED CURRENT SLUG
   const currentSlug = getSlugForState({
@@ -476,6 +491,7 @@ export default function App() {
   };
 
   const handleStartQuiz = () => {
+    trackQuizStart();
     // Reset answers so new quiz runs clean without pre-selected answers from previous sessions
     setAnswers({});
     try {

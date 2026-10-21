@@ -25,10 +25,10 @@ export const ASSETS = {
     '/assets/ba6-P_KDi3uZ.jpg',
   ],
   ages: {
-    '18-29': '/assets/18-29-CINL6ef1.png',
-    '30-39': '/assets/30-39-DlwPfCB7.png',
-    '40-49': '/assets/40-50-DhYvfFZS.png',
-    '50plus': '/assets/50_-BjiVXxuV.png',
+    '18-29': '/assets/18-29-CINL6ef1.jpg',
+    '30-39': '/assets/30-39-DlwPfCB7.jpg',
+    '40-49': '/assets/40-50-DhYvfFZS.jpg',
+    '50plus': '/assets/50_-BjiVXxuV.jpg',
   },
   avatars: [
     '/images/avatar-w1.png',

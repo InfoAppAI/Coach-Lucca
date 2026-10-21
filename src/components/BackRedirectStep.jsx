@@ -13,6 +13,7 @@ import {
   Tag
 } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
+import { trackCheckoutClick, trackOfferView, withTracking } from '../utils/pixel';
 import { CHECKOUT_URL, DOWNSELL_CHECKOUT_URL, BEFORE_AFTER_CASES } from '../data/quizData';
 
 export default function BackRedirectStep({ onBackToQuiz }) {
@@ -55,12 +56,13 @@ export default function BackRedirectStep({ onBackToQuiz }) {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-  const handleCheckout = (e, isDownsell = false) => {
-    const url = isDownsell ? DOWNSELL_CHECKOUT_URL : CHECKOUT_URL;
-    if (url === '#') {
-      e.preventDefault();
-    }
+  const handleCheckout = (isDownsell = false) => {
+    trackCheckoutClick(isDownsell ? 'downsell' : 'main');
   };
+
+  useEffect(() => {
+    if (showDownsellModal) trackOfferView('downsell');
+  }, [showDownsellModal]);
 
   const handleOpenDownsell = (e) => {
     e.preventDefault();
@@ -283,8 +285,8 @@ export default function BackRedirectStep({ onBackToQuiz }) {
           {/* PRIMARY CTA BUTTON ($9.90) */}
           <div className="space-y-2.5 pt-1">
             <a
-              href={CHECKOUT_URL}
-              onClick={(e) => handleCheckout(e, false)}
+              href={withTracking(CHECKOUT_URL)}
+              onClick={() => handleCheckout(false)}
               className="w-full py-4.5 sm:py-5 px-6 rounded-[22px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#10B981] hover:brightness-110 text-white font-black text-base sm:text-lg shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer font-heading uppercase tracking-wide group animate-pulse border-none text-center no-underline"
             >
               <Zap className="w-5 h-5 text-[#FFE600] fill-[#FFE600] shrink-0" />
@@ -310,6 +312,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                 <div key={`case-${item.title}`} className="bg-[#FAF2F7] rounded-2xl p-2.5 border border-[#F0DCEB] space-y-1.5 text-center shadow-2xs">
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-white">
                     <img 
+                      loading="lazy"
                       src={item.image} 
                       alt={item.title}
                       className="w-full h-full object-cover"
@@ -442,8 +445,8 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             {/* Modal Primary CTA ($5.90) */}
             <div className="space-y-2 pt-1">
               <a
-                href={DOWNSELL_CHECKOUT_URL}
-                onClick={(e) => handleCheckout(e, true)}
+                href={withTracking(DOWNSELL_CHECKOUT_URL)}
+                onClick={() => handleCheckout(true)}
                 className="w-full py-4 px-5 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#10B981] hover:brightness-110 text-white font-black text-sm sm:text-base shadow-[0_10px_24px_rgba(255,42,133,0.35)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer font-heading uppercase tracking-wide group animate-pulse border-none text-center no-underline"
               >
                 <Tag className="w-4 h-4 text-[#FFE600] fill-[#FFE600] shrink-0" />

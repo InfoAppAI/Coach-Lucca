@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { TESTIMONIALS, BEFORE_AFTER_CASES, ASSETS, CHECKOUT_URL } from '../data/quizData';
 import HeaderLogo from './HeaderLogo';
+import { trackCheckoutClick, withTracking } from '../utils/pixel';
 import DiagnosticReportCard from './DiagnosticReportCard';
 
 export default function ResultStep({ userAnswers }) {
@@ -139,6 +140,7 @@ export default function ResultStep({ userAnswers }) {
           {/* APP PREVIEW BANNER */}
           <div className="relative rounded-[22px] overflow-hidden border border-[#F0D2E4] shadow-sm group bg-[#FAF2F7]">
             <img 
+              loading="lazy"
               src={ASSETS.gifs.sales1} 
               alt="Protocolo Glúteos Brasileños App Preview" 
               className="w-full object-cover max-h-64 sm:max-h-72 group-hover:scale-105 transition-transform duration-500"
@@ -284,6 +286,7 @@ export default function ResultStep({ userAnswers }) {
                 <div key={item.id} className="group rounded-2xl overflow-hidden border border-[#F0DCEB] bg-[#FAF2F7] p-2 space-y-1.5 shadow-2xs hover:shadow-md transition-shadow">
                   <div className="relative rounded-xl overflow-hidden h-36 sm:h-44 bg-white">
                     <img 
+                      loading="lazy"
                       src={item.image} 
                       alt={item.title} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -317,7 +320,7 @@ export default function ResultStep({ userAnswers }) {
                     <div className="flex items-center gap-2.5 font-heading">
                       {t.avatar ? (
                         <div className="w-10 h-10 rounded-full overflow-hidden border border-[#F0DCEB] shrink-0 bg-white shadow-2xs">
-                          <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                          <img loading="lazy" src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
                         </div>
                       ) : (
                         <div className="w-10 h-10 rounded-full bg-[#FF2A85] text-white font-black flex items-center justify-center text-xs shrink-0">
@@ -355,12 +358,8 @@ export default function ResultStep({ userAnswers }) {
           {/* HIGH-CONVERTING CTA BUTTON */}
           <div className="space-y-3 pt-1">
             <a
-              href={CHECKOUT_URL}
-              onClick={(e) => {
-                if (CHECKOUT_URL === '#') {
-                  e.preventDefault();
-                }
-              }}
+              href={withTracking(CHECKOUT_URL)}
+              onClick={() => trackCheckoutClick('main')}
               className="w-full py-4 sm:py-5 px-6 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#FF3377] hover:brightness-110 text-white font-black text-lg sm:text-xl shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-3 active:scale-[0.98] transition-all cursor-pointer group uppercase tracking-wide font-heading border-none text-center no-underline"
             >
               <Flame className="w-6 h-6 text-[#FFE600] fill-[#FFE600] shrink-0 drop-shadow-xs" />

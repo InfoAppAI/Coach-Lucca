@@ -66,11 +66,8 @@ export default function VSLStep({ onContinue }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Preload gif/cover on mount and ensure video is primed at 0:00
+  // Ensure video is primed at 0:00
   useEffect(() => {
-    const gifPreload = new Image();
-    gifPreload.src = ASSETS.vslCover || '/assets/capa-vsl.gif';
-
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.muted = true;
