@@ -181,7 +181,7 @@ export function UpsellPage({
         <section className="text-center flex flex-col items-center gap-4 max-w-4xl mx-auto screen-enter">
           <span className="eyebrow-pill px-4 py-1.5 text-xs sm:text-sm">
             <Zap className="w-4 h-4 text-[#FF3377] fill-[#FF3377]" />
-            Acelerador de Resultados 3X · Solo $19.00 USD (80% OFF)
+            Acelerador de Resultados 3X · Solo $19.90 USD (80% OFF)
           </span>
 
           <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-[#2B0B2E] leading-[1.14] tracking-tight">
@@ -272,7 +272,7 @@ export function UpsellPage({
         <section className="w-full max-w-3xl mx-auto flex flex-col gap-3 p-6 sm:p-8 rounded-3xl bg-[#FFE600] border-3 border-[#2B0B2E] shadow-[6px_6px_0_#2B0B2E,12px_12px_0_#FF3377] text-center">
           <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-black text-[#2B0B2E]">
             <Sparkles className="w-4 h-4 text-[#FF3377]" />
-            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO $19.00 USD (80% OFF)</span>
+            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO $19.90 USD (80% OFF)</span>
             <Sparkles className="w-4 h-4 text-[#FF3377]" />
           </div>
 
@@ -282,7 +282,7 @@ export function UpsellPage({
             className="cta-button py-4 sm:py-5 px-6 sm:px-8 text-base sm:text-xl cursor-pointer transition-all hover:scale-[1.02] shadow-[4px_4px_0_#2B0B2E]"
           >
             <div className="flex items-center justify-center gap-3 font-black">
-              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR $19 USD</span>
+              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR $19.90 USD</span>
               <ArrowRight className="w-6 h-6 stroke-[3]" />
             </div>
             <span className="button-sheen" />
@@ -541,7 +541,7 @@ export function UpsellPage({
                 Menos Celulitis
               </span>
               <p className="text-xs text-[#6C586B] italic leading-relaxed">
-                "El drenaje linfático de 4 minutos en la ducha y la rutina nocturna son impresionantes. Eliminé la retención líquida y la piel quedó firme, tersa y con volumen. Vale cada centavo por solo $19."
+                "El drenaje linfático de 4 minutos en la ducha y la rutina nocturna son impresionantes. Eliminé la retención líquida y la piel quedó firme, tersa y con volumen. Vale cada centavo por solo $19.90."
               </p>
             </div>
 
@@ -607,7 +607,7 @@ export function UpsellPage({
             onClick={handleDecline}
             className="text-xs sm:text-sm font-bold text-[#6C586B] hover:text-[#FF3377] underline decoration-[#2B0B2E]/30 hover:decoration-[#FF3377] transition-all cursor-pointer p-2 leading-relaxed"
           >
-            No, gracias. Entiendo que esta es mi única oportunidad de obtener el Acelerador 3X por $19 USD y prefiero continuar solo con el plan básico, asumiendo el riesgo de tardar semanas adicionales en ver resultados y tener que pagar el precio regular de $97 más adelante.
+            No, gracias. Entiendo que esta es mi única oportunidad de obtener el Acelerador 3X por $19.90 USD y prefiero continuar solo con el plan básico, asumiendo el riesgo de tardar semanas adicionales en ver resultados y tener que pagar el precio regular de $97 más adelante.
           </button>
         </div>
 
@@ -621,7 +621,7 @@ export function UpsellPage({
             {[
               {
                 q: '¿Cómo funciona el pago en 1 clic?',
-                a: 'Tus datos ya fueron validados de forma segura en la compra de tu programa principal hace unos instantes. Al presionar el botón de confirmación, nuestro procesador seguro solo agrega el valor único de $19 USD a la misma orden, sin que tengas que volver a escribir los datos de tu tarjeta.',
+                a: 'Tus datos ya fueron validados de forma segura en la compra de tu programa principal hace unos instantes. Al presionar el botón de confirmación, nuestro procesador seguro solo agrega el valor único de $19.90 USD a la misma orden, sin que tengas que volver a escribir los datos de tu tarjeta.',
               },
               {
                 q: '¿Por qué esta oferta tiene un precio tan bajo?',

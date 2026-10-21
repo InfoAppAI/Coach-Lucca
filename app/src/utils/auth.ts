@@ -46,4 +46,5 @@ export async function logout(): Promise<void> {
 }
 
 // Public (non-secret) checkout link for buying the Acelerador from inside the app
-export const UPSELL_CHECKOUT_URL: string = import.meta.env.VITE_UPSELL_CHECKOUT_URL || '';
+export const UPSELL_CHECKOUT_URL: string =
+  import.meta.env.VITE_UPSELL_CHECKOUT_URL || 'https://pay.hotmart.com/I108133663X';
