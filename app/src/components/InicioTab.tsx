@@ -41,6 +41,7 @@ interface InicioTabProps {
   onUpdateSession?: (updated: UserSession) => void;
   onOpenOnboarding?: () => void;
   onOpenCookbook?: () => void;
+  onOpenAcelerador?: () => void;
 }
 
 const getMealImageSrc = (key: string): string => {
@@ -102,6 +103,7 @@ export function InicioTab({
   onUpdateSession,
   onOpenOnboarding,
   onOpenCookbook,
+  onOpenAcelerador,
 }: Readonly<InicioTabProps>) {
   const geoTime = useGeoTime();
   const completedHabitsCount = habits.filter((h) => h.completed).length;
@@ -250,6 +252,18 @@ export function InicioTab({
                 {userSession.hasUpsell ? 'VIP INCLUIDO' : 'OPCIONAL'}
               </span>
             </div>
+
+            {onOpenAcelerador && (
+              <button
+                type="button"
+                onClick={onOpenAcelerador}
+                className="w-full py-2 px-3 bg-[#2B0B2E] hover:bg-[#FF3377] text-[#FFE600] hover:text-white text-xs font-black rounded-xl border-2 border-[#2B0B2E] shadow-[2px_2px_0_#FF3377] transition-all cursor-pointer"
+              >
+                {userSession.hasUpsell
+                  ? '🌙 Abrir Rutinas Nocturnas, Drenaje y Proteínas'
+                  : '🔒 Ver qué incluye el Acelerador VIP'}
+              </button>
+            )}
 
           </div>
         )}

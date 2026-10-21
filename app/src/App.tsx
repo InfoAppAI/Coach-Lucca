@@ -12,6 +12,7 @@ import { MiniOnboardingModal } from './components/MiniOnboardingModal';
 import { SoundControl } from './components/SoundControl';
 import { ProteinCookbookModal } from './components/ProteinCookbookModal';
 import { UpsellPage } from './components/UpsellPage';
+import { AceleradorModal } from './components/AceleradorModal';
 import { AppSlug, APP_PATH, getCurrentSlug, isUpsellPage, navigateToSlug } from './utils/router';
 import { fetchSession, logout, ServerSession, UPSELL_CHECKOUT_URL } from './utils/auth';
 import { clearLocalProfile, loadLocalProfile, saveLocalProfile } from './utils/localProfile';
@@ -60,6 +61,7 @@ export default function App() {
   const [showQuizModal, setShowQuizModal] = useState(false);
   const [showOnboardingModal, setShowOnboardingModal] = useState(false);
   const [showCookbookModal, setShowCookbookModal] = useState(false);
+  const [showAceleradorModal, setShowAceleradorModal] = useState(false);
   const [cookbookExtraProtein, setCookbookExtraProtein] = useState<number>(0);
 
   // Synchronize internal state based on slug
@@ -69,15 +71,10 @@ export default function App() {
       navigateToSlug(slug);
     }
 
-    if (slug === '/quiz') {
-      setShowQuizModal(true);
-      setShowCookbookModal(false);
-    } else if (slug === '/receitas') {
-      setShowCookbookModal(true);
-      setShowQuizModal(false);
-    } else {
-      setShowQuizModal(false);
-      setShowCookbookModal(false);
+    setShowQuizModal(slug === '/quiz');
+    setShowCookbookModal(slug === '/receitas');
+    setShowAceleradorModal(slug === '/acelerador');
+    if (!['/quiz', '/receitas', '/acelerador'].includes(slug)) {
       if (slug === '/inicio') setCurrentTab('inicio');
       else if (slug === '/entrenar') setCurrentTab('entrenar');
       else if (slug === '/comidas') setCurrentTab('comidas');
@@ -428,6 +425,7 @@ export default function App() {
             onUpdateSession={(updated) => setUserSession(updated)}
             onOpenOnboarding={() => setShowOnboardingModal(true)}
             onOpenCookbook={() => handleSlugNavigation('/receitas')}
+            onOpenAcelerador={() => handleSlugNavigation('/acelerador')}
           />
         )}
 
@@ -504,11 +502,13 @@ export default function App() {
       )}
 
       {/* Protein Cookbook Modal (+50 Recetas Proteicas para Glúteos) */}
-      {showCookbookModal && !activeUserSession.hasUpsell && (
+      {(showCookbookModal || showAceleradorModal) && !activeUserSession.hasUpsell && (
         <div className="fixed inset-0 z-50 bg-[#2B0B2E]/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-[#FFF9E6] border-3 border-[#2B0B2E] w-full max-w-sm rounded-3xl p-5 shadow-[6px_6px_0_#2B0B2E] flex flex-col gap-3 text-center text-[#2B0B2E]">
             <span className="text-3xl">🔒</span>
-            <h3 className="font-display font-black text-lg">Libro de +50 Recetas Proteicas</h3>
+            <h3 className="font-display font-black text-lg">
+              {showAceleradorModal ? 'Protocolo Acelerador 3X VIP' : 'Libro de +50 Recetas Proteicas'}
+            </h3>
             <p className="text-xs text-[#6C586B] leading-relaxed">
               Este contenido es parte del <strong>Protocolo Acelerador VIP</strong>.
             </p>
@@ -520,7 +520,7 @@ export default function App() {
             )}
             <button
               type="button"
-              onClick={() => handleSlugNavigation('/comidas')}
+              onClick={() => handleSlugNavigation(showAceleradorModal ? '/inicio' : '/comidas')}
               className="text-xs font-bold text-[#6C586B] underline cursor-pointer"
             >
               Volver
@@ -534,6 +534,14 @@ export default function App() {
           isOpen={showCookbookModal}
           onClose={() => handleSlugNavigation('/comidas')}
           onAddProtein={handleAddCookbookProtein}
+        />
+      )}
+
+      {/* Protocolo Acelerador 3X VIP (upsell content) */}
+      {showAceleradorModal && activeUserSession.hasUpsell && (
+        <AceleradorModal
+          onClose={() => handleSlugNavigation('/inicio')}
+          onOpenCookbook={() => handleSlugNavigation('/receitas')}
         />
       )}
     </div>

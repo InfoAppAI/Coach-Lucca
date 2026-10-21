@@ -298,7 +298,7 @@ export function UpsellPage({
             </span>
             <span>•</span>
             <span className="flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-[#00A859]" /> 30 Días de Garantía Total
+              <Award className="w-4 h-4 text-[#00A859]" /> 7 Días de Garantía Total
             </span>
           </div>
         </section>
@@ -330,7 +330,7 @@ export function UpsellPage({
                 Rutinas Nocturnas de Activación Neuromuscular 3X
               </h3>
               <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed">
-                Rutinas exprés de 10 minutos para hacer en la cama o esterilla antes de dormir. Activan fibras inactivas del glúteo máximo sin sobrecargar los muslos.
+                3 rutinas exprés de 10 minutos, sin material, para hacer en la cama o en la esterilla antes de dormir y activar el glúteo sin sobrecargar los muslos.
               </p>
               <span className="text-xs font-black text-[#FF3377] mt-auto">Valor individual: $27.00 USD</span>
             </div>
@@ -349,7 +349,7 @@ export function UpsellPage({
                 Protocolo Linfático Drenante Anti-Celulitis
               </h3>
               <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed">
-                Drenaje manual de 4 minutos bajo la ducha con activos naturales que estimulan la circulación local y alisan los hoyuelos de la celulitis en 14 días.
+                Automasaje guiado de 4 minutos bajo la ducha, con reto de 14 días, para estimular la circulación local y mejorar el aspecto de la piel.
               </p>
               <span className="text-xs font-black text-[#FF3377] mt-auto">Valor individual: $22.00 USD</span>
             </div>
@@ -368,7 +368,7 @@ export function UpsellPage({
                 Guía Secreta de Combinación Proteica para Volumen
               </h3>
               <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed">
-                Las combinaciones exactas de aminoácidos + carbohidratos anti-vientre que dirigen los nutrientes 100% al glúteo sin acumular grasa abdominal.
+                Combinaciones prácticas de comidas con su proteína aproximada para alcanzar tu meta diaria y apoyar el crecimiento del glúteo.
               </p>
               <span className="text-xs font-black text-[#FF3377] mt-auto">Valor individual: $25.00 USD</span>
             </div>
@@ -380,14 +380,14 @@ export function UpsellPage({
                   04
                 </span>
                 <span className="text-[10px] sm:text-xs font-black uppercase text-[#00A859] bg-[#A7FF00]/30 px-2.5 py-1 rounded-md">
-                  Inteligencia AI VIP
+                  Recetario VIP
                 </span>
               </div>
               <h3 className="font-display font-black text-base sm:text-lg text-[#2B0B2E]">
-                Acceso Ilimitado al Coach AI con Prioridad VIP
+                Libro Oficial de +50 Recetas Proteicas
               </h3>
               <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed">
-                Resuelve dudas las 24 horas, solicita sustituciones de ejercicios en 1 segundo y recibe correcciones personalizadas para tu biomecánica individual.
+                Más de 50 recetas altas en proteína para desayunos, comidas, snacks y postres, con la proteína de cada receta.
               </p>
               <span className="text-xs font-black text-[#FF3377] mt-auto">Valor individual: $35.00 USD</span>
             </div>
@@ -452,7 +452,7 @@ export function UpsellPage({
               </div>
               <div className="flex items-start gap-2.5 text-[#6C586B]">
                 <X className="w-4 h-4 text-[#FF3377] flex-shrink-0 mt-0.5" />
-                <span>Coach AI con fila de respuesta estándar</span>
+                <span>Sin recetario proteico</span>
               </div>
             </div>
 
@@ -477,11 +477,11 @@ export function UpsellPage({
               </div>
               <div className="flex items-start gap-2.5 font-black text-[#2B0B2E]">
                 <Check className="w-4 h-4 text-[#00A859] flex-shrink-0 mt-0.5 stroke-[3]" />
-                <span>Guía Combinación Proteica Anti-Vientre</span>
+                <span>Guía de Combinaciones Proteicas</span>
               </div>
               <div className="flex items-start gap-2.5 font-black text-[#2B0B2E]">
                 <Check className="w-4 h-4 text-[#00A859] flex-shrink-0 mt-0.5 stroke-[3]" />
-                <span>Coach AI Ilimitado + Respuesta Prioritaria</span>
+                <span>Libro de +50 Recetas Proteicas</span>
               </div>
             </div>
           </div>
@@ -578,10 +578,10 @@ export function UpsellPage({
           </div>
           <div className="flex flex-col text-center sm:text-left">
             <h3 className="font-display font-black text-lg sm:text-xl text-[#2B0B2E] leading-tight">
-              Garantía Incondicional Blindada de 30 Días
+              Garantía Incondicional de 7 Días
             </h3>
             <p className="text-xs sm:text-sm text-[#6C586B] leading-relaxed mt-1.5">
-              Prueba el Acelerador VIP durante 30 días completos. Si no notas tus glúteos más firmes, levantados y redondos en el espejo, simplemente envíanos un correo y te reembolsaremos el 100% de tu dinero inmediatamente. ¡Riesgo cero absoluto!
+              Prueba el Acelerador VIP durante 7 días. Si no te gusta por cualquier motivo, pide el reembolso directamente en Hotmart y te devolvemos el 100% de tu dinero. ¡Riesgo cero!
             </p>
           </div>
         </section>

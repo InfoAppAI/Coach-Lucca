@@ -1,5 +1,5 @@
 // In-app navigation: tabs and modals live in the URL hash (#entrenar, #receitas...).
-// The two entry pages are hidden paths set at build time (see app/.env.example).
+// The two entry pages are hidden paths set at build time (see app/vite.config.ts).
 export type AppSlug =
   | '/inicio'
   | '/entrenar'
@@ -7,7 +7,8 @@ export type AppSlug =
   | '/coach-ai'
   | '/progreso'
   | '/quiz'
-  | '/receitas';
+  | '/receitas'
+  | '/acelerador';
 
 export const UPSELL_PATH = `/${import.meta.env.VITE_UPSELL_SLUG}/`;
 export const APP_PATH = `/${import.meta.env.VITE_APP_SLUG}/`;
@@ -20,6 +21,7 @@ const PAGE_TITLES: Record<AppSlug, string> = {
   '/progreso': 'Progreso 28 Días · Coach Glúteos 28D',
   '/quiz': 'Diagnóstico Personalizado · Coach Glúteos 28D',
   '/receitas': '+50 Recetas Proteicas · Coach Glúteos 28D',
+  '/acelerador': 'Protocolo Acelerador 3X VIP · Coach Glúteos 28D',
 };
 
 export function isUpsellPage(): boolean {
