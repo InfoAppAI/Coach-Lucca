@@ -30,7 +30,8 @@ async function getAccessToken() {
   });
   const res = await fetch(`${TOKEN_URL}?${params}`, {
     method: 'POST',
-    headers: { Authorization: `Basic ${requireEnv('HOTMART_BASIC')}` },
+    // Accept the value pasted with or without the "Basic " prefix shown by Hotmart
+    headers: { Authorization: `Basic ${requireEnv('HOTMART_BASIC').replace(/^Basic\s+/i, '').trim()}` },
   });
   if (!res.ok) throw new HotmartUnavailableError(`Hotmart token request failed (${res.status})`);
 
