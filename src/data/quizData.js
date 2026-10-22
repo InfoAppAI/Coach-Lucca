@@ -9,6 +9,9 @@ export const ASSETS = {
   socialProof: '/images/social-1783313372611-ChatGPT_Image_5_de_jul._de_2026,_20_52_06.webp',
   gifs: {
     sales1: '/assets/gif-salespage-1-MfxSMHU2.gif',
+    // Same animation as sales1 as a short video (~10x lighter) + its first frame
+    sales1Video: '/assets/sales1.mp4',
+    sales1Poster: '/assets/sales1-poster.jpg',
     fit1: '/assets/gif-sales-page-2-CeepqVlc.gif',
     homeFit: '/assets/landingpage_nova-D9AExXHH.webp',
   },

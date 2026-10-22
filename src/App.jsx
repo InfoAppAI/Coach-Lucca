@@ -272,9 +272,9 @@ export default function App() {
 
   const isNearOffer = showSummary || isAnalyzing || isVSLStep || isCouponStep || currentStepIndex >= QUIZ_STEPS.length - 3;
   useEffect(() => {
-    if (!isNearOffer || !ASSETS.gifs?.sales1) return;
+    if (!isNearOffer || !ASSETS.gifs?.sales1Poster) return;
     const img = new Image();
-    img.src = ASSETS.gifs.sales1;
+    img.src = ASSETS.gifs.sales1Poster;
   }, [isNearOffer]);
 
   // COMPUTED CURRENT SLUG
