@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Tag, Clock, Trophy, AlertTriangle, ShieldCheck, ArrowRight, Flame, CheckCircle2 } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
 import { ASSETS } from '../data/quizData';
+import { copy } from '../utils/variant';
 
 export default function CouponStep({ onClaimCoupon }) {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -220,7 +221,7 @@ export default function CouponStep({ onClaimCoupon }) {
         <div className="bg-[#FFF5F9] text-[#2B0B2E] rounded-2xl p-2.5 px-4 shadow-sm flex items-center justify-between text-xs font-black font-heading border-2 border-[#FF2A85] animate-pulse">
           <span className="flex items-center gap-1.5">
             <AlertTriangle className="w-4 h-4 text-[#FF2A85] shrink-0" />
-            <span className="text-[11px] text-[#2B0B2E]">⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS CON ESTA BECA</span>
+            <span className="text-[11px] text-[#2B0B2E]">{copy('⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS CON ESTA BECA', '⏳ TU BECA ESTÁ RESERVADA POR TIEMPO LIMITADO')}</span>
           </span>
           <span className="font-mono bg-[#FF2A85] px-2 py-0.5 rounded text-white font-black text-xs shadow-2xs">
             {formatTime(timeLeft)}
@@ -234,7 +235,7 @@ export default function CouponStep({ onClaimCoupon }) {
           <div className="space-y-2.5">
             <div className="inline-flex items-center gap-1.5 bg-[#FFE600] text-[#19041C] border-2 border-[#FFE600] text-[11px] sm:text-xs font-black uppercase tracking-wide px-4 py-1.5 rounded-full shadow-[2px_2px_0px_#FF2A85] mx-auto font-heading">
               <Trophy className="w-4 h-4 text-[#FF2A85]" />
-              <span>🎰 PUNTUACIÓN ELITE: 98.4 / 100 SELECCIONADA</span>
+              <span>{copy('🎰 PUNTUACIÓN ELITE: 98.4 / 100 SELECCIONADA', '🎯 PERFIL COMPATIBLE CON EL PROTOCOLO')}</span>
             </div>
 
             <h2 className="text-xl sm:text-2xl font-black text-[#2B0B2E] leading-tight font-heading">
@@ -313,7 +314,7 @@ export default function CouponStep({ onClaimCoupon }) {
                   </span>
                   <div className="flex flex-col items-start">
                     <span className="text-3xl sm:text-4xl font-black text-[#FFE600] tracking-tight leading-none drop-shadow-xs">
-                      🎁 80% OFF
+                      {copy('🎁 80% OFF', '🎁 90% OFF')}
                     </span>
                     <span className="text-[10px] font-bold text-white uppercase pt-0.5">¡Beca de Máximo Descuento!</span>
                   </div>

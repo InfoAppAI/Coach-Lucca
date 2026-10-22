@@ -15,6 +15,7 @@ import {
 import HeaderLogo from './HeaderLogo';
 import { trackCheckoutClick, trackOfferView, withTracking } from '../utils/pixel';
 import { CHECKOUT_URL, DOWNSELL_CHECKOUT_URL, BEFORE_AFTER_CASES } from '../data/quizData';
+import { copy } from '../utils/variant';
 
 export default function BackRedirectStep({ onBackToQuiz }) {
   const [timeLeft, setTimeLeft] = useState(588); // 9 min 48 sec
@@ -83,7 +84,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFE600] animate-ping" />
             <span className="text-[11px] sm:text-xs font-black uppercase tracking-wide font-heading">
-              🚨 Beca del 80% Reservada Temporalmente
+              {copy('🚨 Beca del 80% Reservada Temporalmente', '🚨 Beca del 90% Reservada Temporalmente')}
             </span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full font-mono text-xs font-black text-[#FFE600]">
@@ -266,7 +267,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             {/* Final Discount Price Box */}
             <div className="bg-white text-[#2B0B2E] border-2 border-[#FF2A85] rounded-2xl p-4 text-center space-y-1 shadow-sm">
               <span className="text-[10px] sm:text-[11px] font-black uppercase text-[#FF2A85] tracking-wider block font-heading">
-                🎉 TU PRECIO CON BECA DEL 80% HOY:
+                {copy('🎉 TU PRECIO CON BECA DEL 80% HOY:', '🎉 TU PRECIO CON BECA DEL 90% HOY:')}
               </span>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl sm:text-4xl font-black text-[#059669] font-heading tracking-tight">

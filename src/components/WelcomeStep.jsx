@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, ShieldCheck, Star, Sparkles, CheckCircle2, Zap } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
 import { ASSETS } from '../data/quizData';
+import { copy } from '../utils/variant';
 
 export default function WelcomeStep({ onStart }) {
   return (
@@ -101,7 +102,7 @@ export default function WelcomeStep({ onStart }) {
               ))}
             </div>
             <span className="font-black text-[#2B0B2E]">4.9/5</span>
-            <span className="text-[#91798E]">| +14,800 alumnas satisfechas</span>
+            <span className="text-[#91798E]">{copy('| +14,800 alumnas satisfechas', '| +12.000 alumnas')}</span>
           </div>
 
         </div>

@@ -2,15 +2,19 @@
  * Meta Pixel funnel events + UTM passthrough to the Hotmart checkout.
  * The Pixel itself is loaded in index.html; Purchase is sent by Hotmart's own Pixel integration.
  */
+import { COPY_VARIANT } from './variant';
 
 const UTM_STORAGE_KEY = 'pgb_utms';
 const TRACKED_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid'];
 const PRICE = { main: 9.9, downsell: 5.9 };
 const firedOnce = new Set();
 
-const fbq = (...args) => {
+const fbq = (method, event, params = {}) => {
   try {
-    if (typeof window !== 'undefined' && typeof window.fbq === 'function') window.fbq(...args);
+    // Every funnel event says which copy version (A/B) the visitor saw
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq(method, event, { ...params, copy_variant: COPY_VARIANT });
+    }
   } catch {
     // Tracking must never break the funnel
   }
@@ -50,6 +54,8 @@ export const withTracking = (checkoutUrl) => {
     Object.entries(utms).forEach(([key, value]) => {
       if (key !== 'fbclid' && !url.searchParams.has(key)) url.searchParams.set(key, value);
     });
+    // Hotmart reports group sales by "sck": tag which copy version sold
+    if (!url.searchParams.has('sck')) url.searchParams.set('sck', `var_${COPY_VARIANT}`);
     // Hotmart groups sales by "src": fall back to the campaign source
     if (!url.searchParams.has('src') && utms.utm_source) url.searchParams.set('src', utms.utm_source);
     return url.toString();

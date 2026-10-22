@@ -18,6 +18,7 @@ import { TESTIMONIALS, BEFORE_AFTER_CASES, ASSETS, CHECKOUT_URL } from '../data/
 import HeaderLogo from './HeaderLogo';
 import { trackCheckoutClick, withTracking } from '../utils/pixel';
 import DiagnosticReportCard from './DiagnosticReportCard';
+import { copy, IS_VARIANT_B } from '../utils/variant';
 
 export default function ResultStep({ userAnswers }) {
   const selectedAge = userAnswers[2] || "30-39";
@@ -40,6 +41,7 @@ export default function ResultStep({ userAnswers }) {
   }, []);
 
   useEffect(() => {
+    if (IS_VARIANT_B) return undefined; // version B: no simulated buyer pop-ups
     let index = 0;
     // Show next buyer notification every 8 seconds
     const popupInterval = setInterval(() => {
@@ -86,7 +88,7 @@ export default function ResultStep({ userAnswers }) {
         <div className="bg-[#FFF5F9] text-[#2B0B2E] rounded-2xl p-2.5 px-4 shadow-sm flex items-center justify-between text-xs font-black font-heading border-2 border-[#FF2A85] animate-pulse">
           <span className="flex items-center gap-1.5">
             <AlertTriangle className="w-4 h-4 text-[#FF2A85] shrink-0" />
-            <span className="text-[11px] text-[#2B0B2E]">⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS A ESTE PRECIO</span>
+            <span className="text-[11px] text-[#2B0B2E]">{copy('⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS A ESTE PRECIO', '⏳ PRECIO PROMOCIONAL POR TIEMPO LIMITADO')}</span>
           </span>
           <span className="font-mono bg-[#FF2A85] px-2 py-0.5 rounded text-white font-black text-xs shadow-2xs">
             {formatTime(timeLeft)}
@@ -159,8 +161,8 @@ export default function ResultStep({ userAnswers }) {
           {/* Core Metrics */}
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-[#FAF2F7] p-3.5 rounded-2xl border border-[#F0DCEB] text-center shadow-2xs font-heading">
-              <span className="block text-2xl sm:text-3xl font-black text-[#FF2A85]">+4 a +7 cm</span>
-              <span className="text-xs font-black text-[#2B0B2E] uppercase tracking-wide">Volumen Estimado</span>
+              <span className="block text-2xl sm:text-3xl font-black text-[#FF2A85]">{copy('+4 a +7 cm', '8-10 min')}</span>
+              <span className="text-xs font-black text-[#2B0B2E] uppercase tracking-wide">{copy('Volumen Estimado', 'Al Día, en Casa')}</span>
             </div>
             <div className="bg-[#FAF2F7] p-3.5 rounded-2xl border border-[#F0DCEB] text-center shadow-2xs font-heading">
               <span className="block text-2xl sm:text-3xl font-black text-[#FF2A85]">28 Días</span>
@@ -281,7 +283,7 @@ export default function ResultStep({ userAnswers }) {
                 <span>Resultados Reales de Alumnas</span>
               </h3>
               <span className="text-xs font-black bg-[#FFE600] text-[#19041C] px-3 py-1 rounded-full border border-[#FFE600]">
-                +14.800 Casos
+                {copy('+14.800 Casos', '+12.000 Alumnas')}
               </span>
             </div>
 
@@ -314,7 +316,7 @@ export default function ResultStep({ userAnswers }) {
             <div className="flex items-center justify-between">
               <h3 className="font-black text-[#2B0B2E] text-base sm:text-lg flex items-center gap-2">
                 <Star className="w-5 h-5 text-[#FFB800] fill-[#FFB800]" />
-                <span>Opiniones Verificadas de Alumnas</span>
+                <span>{copy('Opiniones Verificadas de Alumnas', 'Opiniones de Alumnas')}</span>
               </h3>
             </div>
 
@@ -338,7 +340,7 @@ export default function ResultStep({ userAnswers }) {
                       </div>
                     </div>
                     <span className="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#10B981]/30 font-heading">
-                      Alumna Verificada ✓
+                      {copy('Alumna Verificada ✓', 'Alumna del Programa')}
                     </span>
                   </div>
                   <p className="text-xs text-[#6B5469] font-medium leading-relaxed italic">

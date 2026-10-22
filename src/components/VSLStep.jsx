@@ -14,6 +14,7 @@ import {
 import HeaderLogo from './HeaderLogo';
 import { ASSETS } from '../data/quizData';
 import { trackVSLPlay } from '../utils/pixel';
+import { copy } from '../utils/variant';
 
 // Target duration in seconds of video playback to reach 100% (fast paced sensation)
 const TARGET_PLAYED_SECONDS_FOR_100 = 12.0;
@@ -31,7 +32,7 @@ function getStatusMessage(isLoaderActive, roundedProgress) {
   if (!isLoaderActive) {
     return '👆 Toca en el vídeo para activar el audio y desbloquear tu Beca...';
   }
-  if (roundedProgress >= 100) return '🎉 ¡BECA DEL 80% DESBLOQUEADA CON ÉXITO!';
+  if (roundedProgress >= 100) return copy('🎉 ¡BECA DEL 80% DESBLOQUEADA CON ÉXITO!', '🎉 ¡BECA DEL 90% DESBLOQUEADA CON ÉXITO!');
   if (roundedProgress >= 70) return '🔥 ¡Últimos segundos! Desbloqueando tu Beca...';
   if (roundedProgress >= 30) return '⚡ Calibrando tu cupón exclusivo y diagnóstico...';
   return '▶️ Calibrando estímulo biomecánico en tiempo real...';
@@ -53,7 +54,7 @@ function getBottomPillText(isLoaderActive, roundedProgress) {
   if (roundedProgress >= 70) {
     return '🔥 ¡Últimos segundos! Desbloqueando Beca...';
   }
-  return 'Mira la explicación para desbloquear tu Beca del 80%';
+  return copy('Mira la explicación para desbloquear tu Beca del 80%', 'Mira la explicación para desbloquear tu Beca del 90%');
 }
 
 export default function VSLStep({ onContinue }) {
@@ -284,7 +285,7 @@ export default function VSLStep({ onContinue }) {
               {/* Left Live Badge */}
               <div className="inline-flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-[#FFE600]/60 text-white text-[10px] sm:text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-lg font-heading">
                 <span className="w-2 h-2 rounded-full bg-[#FF2A85] animate-ping" />
-                <span>EN VIVO</span>
+                <span>{copy('EN VIVO', 'VÍDEO EXCLUSIVO')}</span>
               </div>
 
               {/* Center Dynamic Retention Percentage Badge */}
@@ -359,7 +360,7 @@ export default function VSLStep({ onContinue }) {
                       🔊 TOCAR PARA ACTIVAR AUDIO
                     </span>
                     <span className="text-[#FFE600] text-[11px] font-bold block">
-                      Haz clic para iniciar la Beca del 80%
+                      {copy('Haz clic para iniciar la Beca del 80%', 'Haz clic para iniciar la Beca del 90%')}
                     </span>
                   </div>
                 </div>
