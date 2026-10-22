@@ -32,6 +32,12 @@ interface UpsellPageProps {
   onGoToApp?: () => void;
 }
 
+// "?oferta=especial" is the downsell step of the Hotmart funnel: same product at half price
+const IS_DOWNSELL =
+  typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('oferta') === 'especial';
+const PRICE = IS_DOWNSELL ? '$9.90' : '$19.90';
+const DISCOUNT = IS_DOWNSELL ? '90% OFF' : '80% OFF';
+
 export function UpsellPage({
   userSession,
   onDeclineUpsell,
@@ -141,6 +147,20 @@ export function UpsellPage({
           </div>
         </div>
 
+        {IS_DOWNSELL && (
+          <section className="bg-[#2B0B2E] text-white border-3 border-[#2B0B2E] rounded-3xl p-5 sm:p-6 shadow-[6px_6px_0_#FF3377] text-center flex flex-col gap-2">
+            <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-[#FFE600]">
+              🎁 ¡Espera! Una última oportunidad solo para ti
+            </span>
+            <h2 className="font-display font-black text-xl sm:text-3xl leading-tight">
+              El Acelerador 3X completo a <span className="text-[#FFE600]">mitad de precio</span>: solo $9.90 USD
+            </h2>
+            <p className="text-xs sm:text-sm text-white/85">
+              Mismo contenido, mismo acceso inmediato. Antes $19.90 USD. Este precio no volverá a aparecer.
+            </p>
+          </section>
+        )}
+
         {/* 3. URGENT COUNTDOWN TIMER & SCARCITY BANNER (EXPANDED FOR PC) */}
         <section className="bg-[#FFF9E6] border-3 border-[#2B0B2E] rounded-3xl p-5 sm:p-7 shadow-[6px_6px_0_#2B0B2E,12px_12px_0_#FF3377] flex flex-col lg:flex-row items-center justify-between gap-6 screen-enter">
           <div className="flex items-center gap-4 text-center lg:text-left">
@@ -182,7 +202,7 @@ export function UpsellPage({
         <section className="text-center flex flex-col items-center gap-4 max-w-4xl mx-auto screen-enter">
           <span className="eyebrow-pill px-4 py-1.5 text-xs sm:text-sm">
             <Zap className="w-4 h-4 text-[#FF3377] fill-[#FF3377]" />
-            Acelerador de Resultados 3X · Solo $19.90 USD (80% OFF)
+            Acelerador de Resultados 3X · Solo {PRICE} USD ({DISCOUNT})
           </span>
 
           <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-[#2B0B2E] leading-[1.14] tracking-tight">
@@ -263,7 +283,7 @@ export function UpsellPage({
                 ✓ Compatible con tu plan actual
               </span>
               <span className="font-mono text-xs bg-white/15 px-3 py-1 rounded-md font-bold text-white">
-                Cupos con 80% OFF: 3 restantes
+                Cupos con {DISCOUNT}: 3 restantes
               </span>
             </div>
           </div>
@@ -273,7 +293,7 @@ export function UpsellPage({
         <section className="w-full max-w-3xl mx-auto flex flex-col gap-3 p-6 sm:p-8 rounded-3xl bg-[#FFE600] border-3 border-[#2B0B2E] shadow-[6px_6px_0_#2B0B2E,12px_12px_0_#FF3377] text-center">
           <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-black text-[#2B0B2E]">
             <Sparkles className="w-4 h-4 text-[#FF3377]" />
-            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO $19.90 USD (80% OFF)</span>
+            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO {PRICE} USD ({DISCOUNT})</span>
             <Sparkles className="w-4 h-4 text-[#FF3377]" />
           </div>
 
@@ -283,7 +303,7 @@ export function UpsellPage({
             className="cta-button py-4 sm:py-5 px-6 sm:px-8 text-base sm:text-xl cursor-pointer transition-all hover:scale-[1.02] shadow-[4px_4px_0_#2B0B2E]"
           >
             <div className="flex items-center justify-center gap-3 font-black">
-              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR $19.90 USD</span>
+              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR {PRICE} USD</span>
               <ArrowRight className="w-6 h-6 stroke-[3]" />
             </div>
             <span className="button-sheen" />
@@ -610,7 +630,7 @@ export function UpsellPage({
             onClick={handleDecline}
             className="text-xs sm:text-sm font-bold text-[#6C586B] hover:text-[#FF3377] underline decoration-[#2B0B2E]/30 hover:decoration-[#FF3377] transition-all cursor-pointer p-2 leading-relaxed"
           >
-            No, gracias. Entiendo que esta es mi única oportunidad de obtener el Acelerador 3X por $19.90 USD y prefiero continuar solo con el plan básico, asumiendo el riesgo de tardar semanas adicionales en ver resultados y tener que pagar el precio regular de $97 más adelante.
+            No, gracias. Entiendo que esta es mi única oportunidad de obtener el Acelerador 3X por {PRICE} USD y prefiero continuar solo con el plan básico, asumiendo el riesgo de tardar semanas adicionales en ver resultados y tener que pagar el precio regular de $97 más adelante.
           </button>
         </div>
 
@@ -624,11 +644,11 @@ export function UpsellPage({
             {[
               {
                 q: '¿Cómo funciona el pago en 1 clic?',
-                a: 'Tus datos ya fueron validados de forma segura en la compra de tu programa principal hace unos instantes. Al presionar el botón de confirmación, nuestro procesador seguro solo agrega el valor único de $19.90 USD a la misma orden, sin que tengas que volver a escribir los datos de tu tarjeta.',
+                a: `Tus datos ya fueron validados de forma segura en la compra de tu programa principal hace unos instantes. Al presionar el botón de confirmación, nuestro procesador seguro solo agrega el valor único de ${PRICE} USD a la misma orden, sin que tengas que volver a escribir los datos de tu tarjeta.`,
               },
               {
                 q: '¿Por qué esta oferta tiene un precio tan bajo?',
-                a: 'Porque acabas de convertirte en nuestra alumna oficial. Como agradecimiento por tu confianza, habilitamos el Acelerador con 80% de descuento exclusivo para nuevas miembros únicamente durante los 15 minutos de esta pantalla.',
+                a: `Porque acabas de convertirte en nuestra alumna oficial. Como agradecimiento por tu confianza, habilitamos el Acelerador con ${DISCOUNT.replace(' OFF', '')} de descuento exclusivo para nuevas miembros únicamente durante los 15 minutos de esta pantalla.`,
               },
               {
                 q: '¿Qué pasa si tengo poco tiempo en mi día a día?',
