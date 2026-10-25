@@ -4,6 +4,7 @@ import { UserSession } from '../types';
 import { SoundControl } from './SoundControl';
 import { HotmartFunnelWidget, HOTMART_FUNNEL_ID } from './HotmartFunnelWidget';
 import { VIP_GROUP_ENABLED } from '../utils/auth';
+import { trackUpsellCtaClick, trackUpsellDecline, trackUpsellView } from '../utils/pixel';
 import {
   Sparkles,
   ShieldCheck,
@@ -37,6 +38,8 @@ const IS_DOWNSELL =
   typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('oferta') === 'especial';
 const PRICE = IS_DOWNSELL ? '$9.90' : '$19.90';
 const DISCOUNT = IS_DOWNSELL ? '90% OFF' : '80% OFF';
+const OFFER = IS_DOWNSELL ? 'downsell' : 'upsell';
+const OFFER_VALUE = IS_DOWNSELL ? 9.9 : 19.9;
 
 export function UpsellPage({
   userSession,
@@ -58,6 +61,11 @@ export function UpsellPage({
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Shows in Meta Events Manager whether buyers actually reach the offer after paying
+  useEffect(() => {
+    trackUpsellView(OFFER, OFFER_VALUE);
+  }, []);
 
   // Decrement countdown timer
   useEffect(() => {
@@ -91,11 +99,13 @@ export function UpsellPage({
 
   const scrollToOffer = () => {
     uiAudio.play('click');
+    trackUpsellCtaClick(OFFER, OFFER_VALUE);
     document.getElementById(HOTMART_FUNNEL_ID)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   const handleDecline = () => {
     uiAudio.play('back');
+    trackUpsellDecline(OFFER);
     if (onDeclineUpsell) {
       onDeclineUpsell();
     }
