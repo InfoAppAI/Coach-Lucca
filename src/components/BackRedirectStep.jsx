@@ -221,12 +221,12 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading">
-                    Soporte & Comunidad VIP de Alumnas
+                    Soporte Directo por Correo
                   </h3>
                   <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$67.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
-                  Acompañamiento motivacional continuo para no rendirte nunca hasta ver tu transformación.
+                  Escríbenos cuando lo necesites: resolvemos tus dudas para que no te rindas hasta ver tu transformación.
                 </p>
               </div>
             </div>
