@@ -13,6 +13,7 @@ import {
   Tag
 } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
+import LocalPriceNote from './LocalPriceNote';
 import { trackCheckoutClick, trackOfferView, withTracking } from '../utils/pixel';
 import { CHECKOUT_URL, DOWNSELL_CHECKOUT_URL, BEFORE_AFTER_CASES } from '../data/quizData';
 
@@ -133,7 +134,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading">
                     Protocolo Glúteos Brasileños 28D (PGB)
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$97.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$97.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   El paso a paso de 4 fases con estímulos neuromusculares de 8 a 10 min/día desde casa.
@@ -151,7 +152,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading">
                     Guía Nutricional Anti-Flacidez y Firmeza
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$47.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$47.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   Combinaciones de alimentos que nutren las fibras glúteas sin pasar hambre ni dietas raras.
@@ -169,7 +170,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading">
                     App Web Interactiva y Cronograma Diario
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$37.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$37.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   Acceso directo desde tu móvil en cualquier momento, con vídeos en HD guiados por Coach Luca.
@@ -187,7 +188,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading flex items-center gap-1">
                     <span>🎁 BONO: SOS Celulitis & Efecto Push-Up 14D</span>
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$29.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$29.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   Técnicas de drenaje linfático casero para alisar la piel y eliminar hoyitos en tiempo récord.
@@ -205,7 +206,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading flex items-center gap-1">
                     <span>🎁 BONO: Guía de Tés Metabólicos Quema-Grasa</span>
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$19.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$19.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   Infusiones naturales para desinflamar el abdomen y potenciar la definición de tu silueta.
@@ -223,7 +224,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                   <h3 className="text-xs sm:text-sm font-black text-[#2B0B2E] font-heading">
                     Soporte Directo por Correo
                   </h3>
-                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">$67.00</span>
+                  <span className="text-[11px] font-bold text-[#91798E] line-through shrink-0">US$67.00</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-[#6B5469] font-medium mt-0.5">
                   Escríbenos cuando lo necesites: resolvemos tus dudas para que no te rindas hasta ver tu transformación.
@@ -247,19 +248,19 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             <div className="space-y-2 text-xs font-medium">
               <div className="flex justify-between items-center text-[#6B5469]">
                 <span>• Gimnasio tradicional (6 meses):</span>
-                <span className="line-through">$180.00</span>
+                <span className="line-through">US$180.00</span>
               </div>
               <div className="flex justify-between items-center text-[#6B5469]">
                 <span>• Entrenador personal mensual:</span>
-                <span className="line-through">$150.00/mes</span>
+                <span className="line-through">US$150.00/mes</span>
               </div>
               <div className="flex justify-between items-center text-[#6B5469]">
                 <span>• Procedimientos y masajes estéticos:</span>
-                <span className="line-through">$300.00+</span>
+                <span className="line-through">US$300.00+</span>
               </div>
               <div className="flex justify-between items-center text-[#2B0B2E] pt-1 border-t border-[#F0DCEB] font-bold">
                 <span>Valor Total de todo el paquete:</span>
-                <span className="text-sm line-through text-red-500">$296.00</span>
+                <span className="text-sm line-through text-red-500">US$296.00</span>
               </div>
             </div>
 
@@ -270,19 +271,20 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               </span>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl sm:text-4xl font-black text-[#059669] font-heading tracking-tight">
-                  $9.90
+                  US$9.90
                 </span>
                 <span className="text-xs text-[#6B5469] font-bold">
                   (Pago Único • Sin Mensualidades)
                 </span>
               </div>
+              <LocalPriceNote />
               <p className="text-[10px] text-[#91798E] font-medium">
                 Acceso Vitalicio + Todas las Actualizaciones Futuras Incluidas
               </p>
             </div>
           </div>
 
-          {/* PRIMARY CTA BUTTON ($9.90) */}
+          {/* PRIMARY CTA BUTTON (US$9.90) */}
           <div className="space-y-2.5 pt-1">
             <a
               href={withTracking(CHECKOUT_URL)}
@@ -290,7 +292,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               className="w-full py-4.5 sm:py-5 px-6 rounded-[22px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#10B981] hover:brightness-110 text-white font-black text-base sm:text-lg shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer font-heading uppercase tracking-wide group animate-pulse border-none text-center no-underline"
             >
               <Zap className="w-5 h-5 text-[#FFE600] fill-[#FFE600] shrink-0" />
-              <span>👉 SÍ, QUIERO ACTIVAR MI BECA POR $9.90</span>
+              <span>👉 SÍ, QUIERO ACTIVAR MI BECA POR US$9.90</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform shrink-0" />
             </a>
 
@@ -347,7 +349,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               onClick={handleOpenDownsell}
               className="text-xs font-bold text-[#91798E] hover:text-[#FF2A85] underline transition-colors cursor-pointer block mx-auto py-1"
             >
-              ¿El valor de $9.90 todavía es un problema? Toca aquí para ver una opción especial
+              ¿El valor de US$9.90 todavía es un problema? Toca aquí para ver una opción especial
             </button>
           </div>
 
@@ -369,7 +371,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
       </div>
 
       {/* ========================================================================= */}
-      {/* 50% OFF HALF-PRICE DOWNSELL MODAL ($5.90) WHEN USER TRIES TO LEAVE */}
+      {/* 50% OFF HALF-PRICE DOWNSELL MODAL (US$5.90) WHEN USER TRIES TO LEAVE */}
       {/* ========================================================================= */}
       {showDownsellModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md animate-fade-in">
@@ -405,7 +407,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
             <div className="bg-[#FAF2F7] rounded-2xl p-4 border-2 border-dashed border-[#FF2A85] space-y-1.5 shadow-inner">
               <div className="flex items-center justify-center gap-2">
                 <span className="text-xs font-bold text-[#91798E] line-through">
-                  Precio anterior: $9.90
+                  Precio anterior: US$9.90
                 </span>
                 <span className="text-[11px] font-black text-white bg-[#FF2A85] px-2 py-0.5 rounded-full uppercase">
                   Subsidio Especial
@@ -414,15 +416,16 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               
               <div className="flex items-baseline justify-center gap-1.5">
                 <span className="text-4xl sm:text-5xl font-black text-[#059669] font-heading tracking-tight">
-                  $5.90
+                  US$5.90
                 </span>
                 <span className="text-xs font-black text-[#2B0B2E] uppercase">
                   (Pago Único)
                 </span>
               </div>
+              <LocalPriceNote offer="downsell" />
 
               <span className="text-[10px] font-black text-[#FF2A85] block pt-0.5">
-                ⚡ Te llevas TODO el plan completo por solo $5.90 hoy.
+                ⚡ Te llevas TODO el plan completo por solo US$5.90 hoy.
               </span>
             </div>
 
@@ -442,7 +445,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
               </div>
             </div>
 
-            {/* Modal Primary CTA ($5.90) */}
+            {/* Modal Primary CTA (US$5.90) */}
             <div className="space-y-2 pt-1">
               <a
                 href={withTracking(DOWNSELL_CHECKOUT_URL)}
@@ -450,7 +453,7 @@ export default function BackRedirectStep({ onBackToQuiz }) {
                 className="w-full py-4 px-5 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#10B981] hover:brightness-110 text-white font-black text-sm sm:text-base shadow-[0_10px_24px_rgba(255,42,133,0.35)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer font-heading uppercase tracking-wide group animate-pulse border-none text-center no-underline"
               >
                 <Tag className="w-4 h-4 text-[#FFE600] fill-[#FFE600] shrink-0" />
-                <span>👉 SÍ, QUIERO MI PLAN POR SOLO $5.90</span>
+                <span>👉 SÍ, QUIERO MI PLAN POR SOLO US$5.90</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform shrink-0" />
               </a>
 

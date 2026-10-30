@@ -18,6 +18,7 @@ import { TESTIMONIALS, BEFORE_AFTER_CASES, ASSETS, CHECKOUT_URL } from '../data/
 import HeaderLogo from './HeaderLogo';
 import { trackCheckoutClick, withTracking } from '../utils/pixel';
 import DiagnosticReportCard from './DiagnosticReportCard';
+import LocalPriceNote from './LocalPriceNote';
 
 export default function ResultStep({ userAnswers }) {
   const selectedAge = userAnswers[2] || "30-39";
@@ -71,7 +72,7 @@ export default function ResultStep({ userAnswers }) {
               {recentBuyer.name} <span className="text-[#FF2A85] font-semibold">({recentBuyer.city})</span>
             </p>
             <p className="text-[10px] text-[#6B5469] font-bold">
-              Obtuvo el protocolo de <span className="underline font-black text-[#FF2A85]">$ 9,90</span> {recentBuyer.time} 🎉
+              Obtuvo el protocolo de <span className="underline font-black text-[#FF2A85]">US$ 9,90</span> {recentBuyer.time} 🎉
             </p>
           </div>
         </div>
@@ -113,7 +114,7 @@ export default function ResultStep({ userAnswers }) {
           {/* DIAGNOSTIC REPORT DASHBOARD CARD */}
           <DiagnosticReportCard userAnswers={userAnswers} />
 
-          {/* $ 9,90 DISCOUNT UNLOCKED BANNER */}
+          {/* US$ 9,90 DISCOUNT UNLOCKED BANNER */}
           <div className="bg-[#FAF2F7] text-[#2B0B2E] rounded-[22px] p-5 shadow-xs text-center space-y-2.5 border-2 border-[#FF2A85] animate-pop font-heading">
             <div className="inline-flex items-center gap-1.5 bg-[#2B0B2E] text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
               <Tag className="w-4 h-4 text-[#FFE600] fill-[#FFE600]" />
@@ -122,18 +123,19 @@ export default function ResultStep({ userAnswers }) {
             
             <div className="flex items-center justify-center gap-3 pt-1">
               <span className="text-lg sm:text-xl font-bold text-[#91798E] line-through">
-                $ 97,00
+                US$ 97,00
               </span>
               <div className="flex flex-col items-start">
                 <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FF2A85] tracking-tight leading-none drop-shadow-xs">
-                  $ 9,90
+                  US$ 9,90
                 </span>
                 <span className="text-[11px] font-black text-[#2B0B2E] uppercase pt-0.5">¡Pago Único • Acceso Inmediato!</span>
+                <LocalPriceNote className="text-left" />
               </div>
             </div>
             
             <p className="text-xs font-black text-[#2B0B2E] bg-white py-1.5 px-3 rounded-xl border border-[#F0DCEB] inline-block shadow-2xs font-body">
-              🎉 ¡Ahorras $ 87,10 y pagas solo <span className="text-[#FF2A85] font-black">$ 9,90</span> por acceso completo de por vida!
+              🎉 ¡Ahorras US$ 87,10 y pagas solo <span className="text-[#FF2A85] font-black">US$ 9,90</span> por acceso completo de por vida!
             </p>
           </div>
 
@@ -192,7 +194,7 @@ export default function ResultStep({ userAnswers }) {
                     <span className="text-[11px] text-[#6B5469] block">Entrenamientos guiados en vídeo paso a paso</span>
                   </div>
                 </div>
-                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">$ 97</span>
+                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">US$ 97</span>
               </div>
 
               {/* ITEM 2 */}
@@ -204,7 +206,7 @@ export default function ResultStep({ userAnswers }) {
                     <span className="text-[11px] text-[#6B5469] block">Activación neuromuscular progresiva sin gimnasio</span>
                   </div>
                 </div>
-                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">$ 67</span>
+                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">US$ 67</span>
               </div>
 
               {/* ITEM 3 */}
@@ -216,7 +218,7 @@ export default function ResultStep({ userAnswers }) {
                     <span className="text-[11px] text-[#6B5469] block">Plan práctico para volumen y firmeza glútea</span>
                   </div>
                 </div>
-                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">$ 47</span>
+                <span className="text-xs font-bold text-[#91798E] line-through shrink-0 font-heading">US$ 47</span>
               </div>
 
               {/* BÔNUS 1 */}
@@ -261,14 +263,15 @@ export default function ResultStep({ userAnswers }) {
             <div className="bg-white rounded-2xl p-4 border-2 border-[#FF2A85] space-y-2 text-center shadow-xs">
               <div className="flex items-center justify-between text-xs font-bold text-[#91798E] font-heading">
                 <span>VALOR TOTAL ACUMULADO:</span>
-                <span className="text-[#91798E] line-through text-sm">$ 211,00</span>
+                <span className="text-[#91798E] line-through text-sm">US$ 211,00</span>
               </div>
               <div className="flex items-center justify-between text-sm sm:text-base font-black text-[#2B0B2E] font-heading">
                 <span>TÚ PAGAS HOY SOLO:</span>
-                <span className="text-2xl sm:text-3xl text-[#FF2A85] drop-shadow-xs">$ 9,90</span>
+                <span className="text-2xl sm:text-3xl text-[#FF2A85] drop-shadow-xs">US$ 9,90</span>
               </div>
+              <LocalPriceNote className="text-right" />
               <p className="text-[11px] font-black text-[#059669]">
-                ⚡ Ahorro Real de $ 201,10 (Obtienes Descuento de Lanzamiento)
+                ⚡ Ahorro Real de US$ 201,10 (Obtienes Descuento de Lanzamiento)
               </p>
             </div>
           </div>
@@ -356,7 +359,7 @@ export default function ResultStep({ userAnswers }) {
               <span className="font-bold text-xs sm:text-sm">Garantía de Satisfacción de 7 Días (Cero Riesgo)</span>
             </div>
             <p className="text-xs text-[#065F46] leading-relaxed font-medium font-body">
-              Prueba el Protocolo Glúteos Brasileños por solo $ 9,90 sin riesgo alguno. Si en 7 días no estás plenamente satisfecha con las rutinas, simplemente solicita la devolución y reembolsaremos el 100% de tu dinero inmediatamente.
+              Prueba el Protocolo Glúteos Brasileños por solo US$ 9,90 sin riesgo alguno. Si en 7 días no estás plenamente satisfecha con las rutinas, simplemente solicita la devolución y reembolsaremos el 100% de tu dinero inmediatamente.
             </p>
           </div>
 

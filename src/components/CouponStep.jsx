@@ -266,15 +266,15 @@ export default function CouponStep({ onClaimCoupon }) {
               <ul className="space-y-1.5 text-[#6B5469] font-medium text-[11px]">
                 <li className="flex items-center justify-between">
                   <span>📱 Protocolo Glúteos Brasileños (Acceso Digital Completo)</span>
-                  <span className="text-[#91798E] line-through">$ 97,00</span>
+                  <span className="text-[#91798E] line-through">US$ 97,00</span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span>🏋️‍♀️ Entrenamientos progresivos con Coach Luca</span>
-                  <span className="text-[#91798E] line-through">$ 67,00</span>
+                  <span className="text-[#91798E] line-through">US$ 67,00</span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span>🥗 Guía de alimentación y rutina de activación</span>
-                  <span className="text-[#91798E] line-through">$ 47,00</span>
+                  <span className="text-[#91798E] line-through">US$ 47,00</span>
                 </li>
                 <li className="flex items-center justify-between font-black text-[#059669] font-heading">
                   <span>🎁 Bonos Exclusivos Incluidos HOY MISMO</span>
@@ -309,7 +309,7 @@ export default function CouponStep({ onClaimCoupon }) {
                 {/* Mystery Discount Breakdown */}
                 <div className="pt-2 flex items-center justify-center gap-3">
                   <span className="text-base sm:text-lg font-bold text-white/60 line-through">
-                    $ 97,00
+                    US$ 97,00
                   </span>
                   <div className="flex flex-col items-start">
                     <span className="text-3xl sm:text-4xl font-black text-[#FFE600] tracking-tight leading-none drop-shadow-xs">
