@@ -5,6 +5,7 @@ import { SoundControl } from './SoundControl';
 import { HotmartFunnelWidget, HOTMART_FUNNEL_ID } from './HotmartFunnelWidget';
 import { VIP_GROUP_ENABLED } from '../utils/auth';
 import { trackUpsellCtaClick, trackUpsellView, trackUpsellWidgetSeen } from '../utils/pixel';
+import { clarityUpsell } from '../utils/clarity';
 import {
   Sparkles,
   ShieldCheck,
@@ -65,6 +66,7 @@ export function UpsellPage({
   // Shows in Meta Events Manager whether buyers actually reach the offer after paying
   useEffect(() => {
     trackUpsellView(OFFER, OFFER_VALUE);
+    clarityUpsell(OFFER);
   }, []);
 
   // Fires once when the Hotmart buttons come into view: compares "saw the page" with "saw the buy button"

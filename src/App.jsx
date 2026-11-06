@@ -14,6 +14,7 @@ import ResultStep from './components/ResultStep';
 import BackRedirectStep from './components/BackRedirectStep';
 import { QUIZ_STEPS, ASSETS } from './data/quizData';
 import { captureAndPersistUTMs, trackLead, trackOfferView, trackQuizStart } from './utils/pixel';
+import { clarityStep } from './utils/clarity';
 
 import ScrollIndicator from './components/ScrollIndicator';
 
@@ -312,6 +313,7 @@ export default function App() {
     if (window.location.hash !== newHash) {
       window.history.replaceState(null, '', newHash);
     }
+    clarityStep(currentSlug);
     try {
       localStorage.setItem(STORAGE_SLUG_KEY, currentSlug);
     } catch {

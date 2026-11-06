@@ -3,6 +3,8 @@
  * The Pixel itself is loaded in index.html; Purchase is sent by Hotmart's own Pixel integration.
  */
 
+import { clarityEvent } from './clarity';
+
 const UTM_STORAGE_KEY = 'pgb_utms';
 const TRACKED_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid'];
 const PRICE = { main: 9.9, downsell: 5.9 };
@@ -75,7 +77,8 @@ export const trackOfferView = (offer = 'main') =>
     currency: 'USD',
   });
 
-export const trackCheckoutClick = (offer = 'main') =>
+export const trackCheckoutClick = (offer = 'main') => {
+  clarityEvent(offer === 'downsell' ? 'checkout_click_downsell' : 'checkout_click');
   fbq('track', 'InitiateCheckout', {
     content_ids: [offer === 'downsell' ? 'PGB_DOWNSELL' : 'PGB_MAIN'],
     content_type: 'product',
@@ -83,3 +86,4 @@ export const trackCheckoutClick = (offer = 'main') =>
     currency: 'USD',
     num_items: 1,
   });
+};
