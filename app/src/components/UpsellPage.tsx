@@ -4,7 +4,7 @@ import { UserSession } from '../types';
 import { SoundControl } from './SoundControl';
 import { HotmartFunnelWidget, HOTMART_FUNNEL_ID } from './HotmartFunnelWidget';
 import { VIP_GROUP_ENABLED } from '../utils/auth';
-import { trackUpsellCtaClick, trackUpsellDecline, trackUpsellView } from '../utils/pixel';
+import { trackUpsellCtaClick, trackUpsellView, trackUpsellWidgetSeen } from '../utils/pixel';
 import {
   Sparkles,
   ShieldCheck,
@@ -67,6 +67,20 @@ export function UpsellPage({
     trackUpsellView(OFFER, OFFER_VALUE);
   }, []);
 
+  // Fires once when the Hotmart buttons come into view: compares "saw the page" with "saw the buy button"
+  useEffect(() => {
+    const widget = document.getElementById(HOTMART_FUNNEL_ID);
+    if (!widget || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        trackUpsellWidgetSeen(OFFER);
+        observer.disconnect();
+      }
+    });
+    observer.observe(widget);
+    return () => observer.disconnect();
+  }, []);
+
   // Decrement countdown timer
   useEffect(() => {
     if (secondsLeft <= 0) return;
@@ -103,13 +117,6 @@ export function UpsellPage({
     document.getElementById(HOTMART_FUNNEL_ID)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  const handleDecline = () => {
-    uiAudio.play('back');
-    trackUpsellDecline(OFFER);
-    if (onDeclineUpsell) {
-      onDeclineUpsell();
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#FFFDF8] text-[#2B0B2E] flex flex-col font-body selection:bg-[#FF3377] selection:text-white relative">
@@ -224,6 +231,32 @@ export function UpsellPage({
           </p>
         </section>
 
+        {/* 6. PRIMARY CALL TO ACTION BUTTON (1-CLICK BUY - ADAPTED FOR PC) */}
+        <section className="w-full max-w-3xl mx-auto flex flex-col gap-3 p-6 sm:p-8 rounded-3xl bg-[#FFE600] border-3 border-[#2B0B2E] shadow-[6px_6px_0_#2B0B2E,12px_12px_0_#FF3377] text-center">
+          <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-black text-[#2B0B2E]">
+            <Sparkles className="w-4 h-4 text-[#FF3377]" />
+            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO {PRICE} USD ({DISCOUNT})</span>
+            <Sparkles className="w-4 h-4 text-[#FF3377]" />
+          </div>
+
+          {/* Hotmart 1-click buttons: "Sí" charges the same card, "No, gracias" opens the $9.90 downsell */}
+          <HotmartFunnelWidget />
+
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-bold text-[#2B0B2E] pt-1">
+            <span className="flex items-center gap-1.5">
+              <Lock className="w-4 h-4 text-[#00A859]" /> Cobro seguro en 1 clic
+            </span>
+            <span>•</span>
+            <span className="flex items-center gap-1.5">
+              <Zap className="w-4 h-4 text-[#FF3377]" /> Activación instantánea
+            </span>
+            <span>•</span>
+            <span className="flex items-center gap-1.5">
+              <Award className="w-4 h-4 text-[#00A859]" /> 7 Días de Garantía Total
+            </span>
+          </div>
+        </section>
+
         {/* 5. DIRECT-RESPONSE HERO CARD (ZERO LATENCY - NO VIDEO - ADAPTED FOR PC IN 2 COLUMNS) */}
         <section className="relative rounded-3xl bg-gradient-to-br from-[#2B0B2E] via-[#3E1343] to-[#1F0721] border-3 border-[#2B0B2E] shadow-[6px_6px_0_#2B0B2E,14px_14px_0_#FF3377] p-6 sm:p-8 lg:p-10 text-white overflow-hidden">
           <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#FFE600_1px,transparent_1px)] [background-size:20px_20px]" />
@@ -296,41 +329,6 @@ export function UpsellPage({
                 Cupos con {DISCOUNT}: 3 restantes
               </span>
             </div>
-          </div>
-        </section>
-
-        {/* 6. PRIMARY CALL TO ACTION BUTTON (1-CLICK BUY - ADAPTED FOR PC) */}
-        <section className="w-full max-w-3xl mx-auto flex flex-col gap-3 p-6 sm:p-8 rounded-3xl bg-[#FFE600] border-3 border-[#2B0B2E] shadow-[6px_6px_0_#2B0B2E,12px_12px_0_#FF3377] text-center">
-          <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-black text-[#2B0B2E]">
-            <Sparkles className="w-4 h-4 text-[#FF3377]" />
-            <span>OFERTA ÚNICA: DE $97.00 USD POR SOLO {PRICE} USD ({DISCOUNT})</span>
-            <Sparkles className="w-4 h-4 text-[#FF3377]" />
-          </div>
-
-          <button
-            type="button"
-            onClick={scrollToOffer}
-            className="cta-button py-4 sm:py-5 px-6 sm:px-8 text-base sm:text-xl cursor-pointer transition-all hover:scale-[1.02] shadow-[4px_4px_0_#2B0B2E]"
-          >
-            <div className="flex items-center justify-center gap-3 font-black">
-              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR {PRICE} USD</span>
-              <ArrowRight className="w-6 h-6 stroke-[3]" />
-            </div>
-            <span className="button-sheen" />
-          </button>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-bold text-[#2B0B2E] pt-1">
-            <span className="flex items-center gap-1.5">
-              <Lock className="w-4 h-4 text-[#00A859]" /> Cobro seguro en 1 clic
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#FF3377]" /> Activación instantánea
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-[#00A859]" /> 7 Días de Garantía Total
-            </span>
           </div>
         </section>
 
@@ -626,7 +624,17 @@ export function UpsellPage({
             <span>HAZ CLIC ABAJO PARA AGREGAR A TU PEDIDO CON 80% DE DESCUENTO</span>
           </div>
 
-          <HotmartFunnelWidget />
+          <button
+            type="button"
+            onClick={scrollToOffer}
+            className="cta-button py-4 sm:py-5 px-6 sm:px-8 text-base sm:text-xl cursor-pointer transition-all hover:scale-[1.02] shadow-[4px_4px_0_#2B0B2E]"
+          >
+            <div className="flex items-center justify-center gap-3 font-black">
+              <span>¡SÍ! QUIERO AGREGAR EL ACELERADOR 3X POR {PRICE} USD</span>
+              <ArrowRight className="w-6 h-6 stroke-[3]" />
+            </div>
+            <span className="button-sheen" />
+          </button>
 
           <p className="text-xs font-bold text-[#6C586B]">
             *Cobro seguro en 1 clic en el mismo método de pago de tu compra principal.
@@ -635,12 +643,15 @@ export function UpsellPage({
 
         {/* 12. RESPECTFUL NO-THANKS / SKIP LINK */}
         <div className="text-center pt-2 max-w-2xl mx-auto">
+          {/* Declining must go through the Hotmart "No, gracias" button: it is what opens the downsell */}
           <button
             type="button"
-            onClick={handleDecline}
+            onClick={() =>
+              document.getElementById(HOTMART_FUNNEL_ID)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }
             className="text-xs sm:text-sm font-bold text-[#6C586B] hover:text-[#FF3377] underline decoration-[#2B0B2E]/30 hover:decoration-[#FF3377] transition-all cursor-pointer p-2 leading-relaxed"
           >
-            No, gracias. Entiendo que esta es mi única oportunidad de obtener el Acelerador 3X por {PRICE} USD y prefiero continuar solo con el plan básico, asumiendo el riesgo de tardar semanas adicionales en ver resultados y tener que pagar el precio regular de $97 más adelante.
+            ¿Prefieres continuar solo con el plan básico? Elige «No, gracias» en el recuadro amarillo de arriba.
           </button>
         </div>
 

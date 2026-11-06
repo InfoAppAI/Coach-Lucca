@@ -69,3 +69,7 @@ export const trackUpsellCtaClick = (offer: 'upsell' | 'downsell', value: number)
   trackCustom('UpsellCTAClick', { offer, value, currency: 'USD' });
 
 export const trackUpsellDecline = (offer: 'upsell' | 'downsell') => trackCustom('UpsellDecline', { offer });
+
+/** The Hotmart 1-click buttons scrolled into view: tells how many buyers actually see the offer. */
+export const trackUpsellWidgetSeen = (offer: 'upsell' | 'downsell') =>
+  trackCustom('UpsellWidgetSeen', { offer });
