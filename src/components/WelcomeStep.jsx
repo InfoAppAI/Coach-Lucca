@@ -5,38 +5,58 @@ import { ASSETS } from '../data/quizData';
 
 export default function WelcomeStep({ onStart }) {
   return (
-    <div className="relative min-h-dvh overflow-hidden bg-gradient-to-b from-[#FFF5F8] via-[#FAF0F6] to-[#F5EBF2] py-6 px-3.5 sm:px-5 flex flex-col justify-center items-center font-body text-[#2B0B2E]">
-      
-      <div className="relative z-10 w-full max-w-lg mx-auto space-y-4">
-        
+    <div className="relative min-h-dvh overflow-hidden bg-gradient-to-b from-[#FFF5F8] via-[#FAF0F6] to-[#F5EBF2] pt-2 pb-6 px-3.5 sm:py-6 sm:px-5 flex flex-col justify-start sm:justify-center items-center font-body text-[#2B0B2E]">
+
+      <div className="relative z-10 w-full max-w-lg mx-auto space-y-2 sm:space-y-4">
+
         {/* Header Logo */}
         <HeaderLogo />
 
         {/* HERO CARD - MOBILE APP MODERN STYLE (LIGHT THEME) */}
-        <div className="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_16px_45px_rgba(43,11,46,0.08)] border border-[#F0D2E4] animate-pop space-y-5 text-center quiz-card relative overflow-hidden">
-          
+        {/* No celular, o botão de começar precisa aparecer na primeira tela (sem rolar). */}
+        <div className="bg-white rounded-[28px] px-5 py-5 sm:p-8 shadow-[0_16px_45px_rgba(43,11,46,0.08)] border border-[#F0D2E4] animate-pop space-y-4 sm:space-y-5 text-center quiz-card relative overflow-hidden">
+
           {/* Top Status Header Pill */}
-          <div className="inline-flex items-center gap-1.5 bg-[#FFE600] text-[#19041C] border-2 border-[#FFE600] px-4 py-1.5 rounded-full text-xs font-black font-heading tracking-wide uppercase shadow-[2px_2px_0px_#FF2A85]">
+          <div className="inline-flex items-center gap-1.5 bg-[#FFE600] text-[#19041C] border-2 border-[#FFE600] px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-black font-heading tracking-wide uppercase shadow-[2px_2px_0px_#FF2A85]">
             <Sparkles className="w-3.5 h-3.5 text-[#FF2A85] fill-[#19041C]" />
             <span>ENTRENAMIENTO FEMENINO ESPECIALIZADO</span>
           </div>
 
           {/* Headline & Subheadline */}
-          <div className="space-y-2.5">
-            <h1 className="text-2xl sm:text-3xl font-black text-[#2B0B2E] uppercase leading-tight tracking-tight font-heading">
+          <div className="space-y-2">
+            <h1 className="text-[22px] sm:text-3xl font-black text-[#2B0B2E] uppercase leading-tight tracking-tight font-heading">
               Desarrolla glúteos más firmes, elevados y definidos con el <span className="text-[#FF2A85]">Protocolo Glúteos Brasileños</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-[#6B5469] font-medium leading-relaxed">
-              Sigue un plan progresivo de entrenamiento diseñado para activar correctamente tus glúteos, mejorar tu técnica y construir resultados reales desde casa o en el gimnasio.
+            <p className="text-sm sm:text-base text-[#6B5469] font-medium leading-snug">
+              Plan guiado de 28 días: rutinas de 8 a 10 min al día, en casa o en el gimnasio.
+            </p>
+          </div>
+
+          {/* Direct Call to Action (acima da imagem para ficar visível sem rolar) */}
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={onStart}
+              className="w-full py-4 sm:py-5 px-5 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#FF3377] hover:brightness-110 text-white font-black text-lg sm:text-xl shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-3 active:scale-[0.98] transition-all cursor-pointer group uppercase tracking-wide font-heading"
+            >
+              <span>QUIERO EMPEZAR EL PROTOCOLO</span>
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform shrink-0" />
+            </button>
+
+            <p className="text-[11px] sm:text-xs font-bold text-[#D97706] uppercase tracking-wide font-heading flex items-center justify-center gap-1">
+              <Zap className="w-3.5 h-3.5 text-[#FFB800] fill-[#FFB800]" />
+              <span>Test rápido de 1 minuto • Gratis</span>
             </p>
           </div>
 
           {/* HERO VISUAL BANNER / PREVIEW IMAGE */}
           <div className="relative w-full max-w-[420px] mx-auto rounded-2xl overflow-hidden border border-[#F0D2E4] shadow-sm bg-gradient-to-b from-[#FFF5F9] to-[#FAF0F6] group">
-            <img 
-              src={ASSETS.hero || ASSETS.gifs.fit1} 
-              alt="Protocolo Glúteos Brasileños Preview" 
+            <img
+              src={ASSETS.hero || ASSETS.gifs.fit1}
+              alt="Protocolo Glúteos Brasileños Preview"
+              width="1254"
+              height="1254"
               className="w-full h-auto aspect-square object-cover object-top group-hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md text-[#2B0B2E] text-[10px] sm:text-[11px] font-black px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#F0D2E4] font-heading">
@@ -69,18 +89,12 @@ export default function WelcomeStep({ onStart }) {
             </div>
           </div>
 
-          {/* Direct Call to Action */}
+          {/* Second Call to Action (para quem rolou até aqui) */}
           <div className="space-y-3 pt-1">
-            <p className="text-xs sm:text-sm font-black text-[#D97706] uppercase tracking-wider font-heading flex items-center justify-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#FFB800] fill-[#FFB800]" />
-              <span>¡RESPONDE EL TEST RÁPIDO Y OBTÉN TU PROTOCOLO!</span>
-            </p>
-
-            {/* CTA Button in Vibrant Hot Pink / Coral */}
             <button
               type="button"
               onClick={onStart}
-              className="w-full py-4 sm:py-5 px-6 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#FF3377] hover:brightness-110 text-white font-black text-lg sm:text-xl shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-3 active:scale-[0.98] transition-all cursor-pointer group uppercase tracking-wide font-heading"
+              className="w-full py-4 sm:py-5 px-5 rounded-[20px] bg-gradient-to-r from-[#FF2A85] via-[#FF007F] to-[#FF3377] hover:brightness-110 text-white font-black text-lg sm:text-xl shadow-[0_12px_28px_rgba(255,42,133,0.35)] flex items-center justify-center gap-3 active:scale-[0.98] transition-all cursor-pointer group uppercase tracking-wide font-heading"
             >
               <span>QUIERO EMPEZAR EL PROTOCOLO</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform shrink-0" />
