@@ -55,8 +55,10 @@ export default function WelcomeStep({ onStart }) {
             <img
               src={ASSETS.hero || ASSETS.gifs.fit1}
               alt="Protocolo Glúteos Brasileños Preview"
-              width="1254"
-              height="1254"
+              width="800"
+              height="800"
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-auto aspect-square object-cover object-top group-hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md text-[#2B0B2E] text-[10px] sm:text-[11px] font-black px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#F0D2E4] font-heading">

@@ -2,8 +2,8 @@ export const CHECKOUT_URL = 'https://pay.hotmart.com/B107481527Q?checkoutMode=10
 export const DOWNSELL_CHECKOUT_URL = 'https://pay.hotmart.com/B107481527Q?off=e6f1h0zk';
 
 export const ASSETS = {
-  logo: '/assets/LOGO3-WGBt60gj.webp',
-  hero: '/assets/hero-Buj0dMyA.webp',
+  logo: '/assets/logo-320.webp',
+  hero: '/assets/hero-800.webp',
   appMockup: '/assets/app2-DvhivXE3.webp',
   landingPromo: '/assets/landingpage_nova-D9AExXHH.webp',
   socialProof: '/images/social-1783313372611-ChatGPT_Image_5_de_jul._de_2026,_20_52_06.webp',

@@ -16,3 +16,5 @@ export const clarityStep = (slug) => {
 };
 
 export const clarityEvent = (name) => call('event', name);
+
+export const clarityTag = (key, value) => call('set', key, value);

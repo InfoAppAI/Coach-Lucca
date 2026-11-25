@@ -14,7 +14,7 @@ export default function Header({ currentStep, totalSteps, isFinished }) {
       <div className="max-w-md mx-auto py-2 px-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <img 
-            src="/assets/LOGO3-WGBt60gj.webp" 
+            src="/assets/logo-320.webp" 
             alt="Protocolo Glúteos Brasileños" 
             className="h-8 sm:h-9 w-auto max-w-[140px] sm:max-w-[170px] object-contain" 
           />

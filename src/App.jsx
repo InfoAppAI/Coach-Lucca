@@ -15,6 +15,7 @@ import BackRedirectStep from './components/BackRedirectStep';
 import { QUIZ_STEPS, ASSETS } from './data/quizData';
 import { captureAndPersistUTMs, trackLead, trackOfferView, trackQuizStart } from './utils/pixel';
 import { clarityStep } from './utils/clarity';
+import { getWelcomeVariant } from './utils/abTest';
 
 import ScrollIndicator from './components/ScrollIndicator';
 
@@ -225,13 +226,24 @@ export const resolveStateFromSlug = (rawSlug) => {
   };
 };
 
-export default function App() {
+// Decided once per page load: a fresh arrival (no step in the URL) in variant B skips the welcome page
+const resolveInitialState = () => {
   const initialHash = typeof window !== 'undefined' ? window.location.hash : '';
-  const initialResolved = resolveStateFromSlug(initialHash || 'bienvenida');
+  const variant = getWelcomeVariant();
+  const isFreshArrival = !initialHash || initialHash === '#' || initialHash === '#bienvenida';
+  if (variant === 'b' && isFreshArrival) {
+    return { ...resolveStateFromSlug(`paso-1-${QUIZ_STEPS[0].slug}`), skippedWelcome: true };
+  }
+  return { ...resolveStateFromSlug(initialHash || 'bienvenida'), skippedWelcome: false };
+};
+
+export default function App() {
+  const [initialResolved] = useState(resolveInitialState);
 
   const [showWelcome, setShowWelcome] = useState(initialResolved.showWelcome);
   const [currentStepIndex, setCurrentStepIndex] = useState(initialResolved.currentStepIndex);
-  const [answers, setAnswers] = useState(getSavedAnswers);
+  // A visitor who lands straight on question 1 starts with a clean quiz, like pressing the start button
+  const [answers, setAnswers] = useState(() => (initialResolved.skippedWelcome ? {} : getSavedAnswers()));
   const [showSummary, setShowSummary] = useState(initialResolved.showSummary);
   const [isAnalyzing, setIsAnalyzing] = useState(initialResolved.isAnalyzing);
   const [isVSLStep, setIsVSLStep] = useState(initialResolved.isVSLStep);
@@ -254,21 +266,37 @@ export default function App() {
     if (isFinished) trackOfferView('main');
   }, [showSummary, isFinished]);
 
-  // STAGED PRELOADER: light images for the next quiz steps right away; the heavy sales GIF
-  // only once the visitor is close to the offer, so the first screen loads fast on 4G
+  // STAGED PRELOADER: images for the next quiz steps only after the first screen has loaded and the
+  // browser is idle, so they don't compete with it on 4G; the heavy sales GIF only near the offer
   useEffect(() => {
-    [
-      ASSETS.logo,
-      ASSETS.coach?.main,
-      ASSETS.coach?.alt,
-      ...Object.values(ASSETS.ages || {}),
-      ...(ASSETS.results || [])
-    ].forEach((url) => {
-      if (url) {
-        const img = new Image();
-        img.src = url;
-      }
-    });
+    let idleId = null;
+    let timerId = null;
+    const preload = () => {
+      [
+        ASSETS.coach?.main,
+        ASSETS.coach?.alt,
+        ...Object.values(ASSETS.ages || {}),
+        ...(ASSETS.results || [])
+      ].forEach((url) => {
+        if (url) {
+          const img = new Image();
+          img.src = url;
+        }
+      });
+    };
+    const schedule = () => {
+      timerId = setTimeout(() => {
+        if ('requestIdleCallback' in window) idleId = window.requestIdleCallback(preload, { timeout: 3000 });
+        else preload();
+      }, 800);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+    return () => {
+      window.removeEventListener('load', schedule);
+      clearTimeout(timerId);
+      if (idleId && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+    };
   }, []);
 
   const isNearOffer = showSummary || isAnalyzing || isVSLStep || isCouponStep || currentStepIndex >= QUIZ_STEPS.length - 3;
@@ -510,6 +538,8 @@ export default function App() {
     isNavigating.current = true;
 
     const stepData = currentStepData;
+    // Variant B never presses the start button: the first answer is the quiz start
+    if (currentStepIndex === 0) trackQuizStart();
     const newAnswers = { ...answers, [stepData.id]: value };
     setAnswers(newAnswers);
 
