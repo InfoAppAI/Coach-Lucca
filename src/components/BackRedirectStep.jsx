@@ -6,7 +6,6 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Flame, 
-  Clock, 
   Zap, 
   Award, 
   X,
@@ -18,15 +17,10 @@ import { trackCheckoutClick, trackOfferView, withTracking } from '../utils/pixel
 import { CHECKOUT_URL, DOWNSELL_CHECKOUT_URL, BEFORE_AFTER_CASES } from '../data/quizData';
 
 export default function BackRedirectStep({ onBackToQuiz }) {
-  const [timeLeft, setTimeLeft] = useState(588); // 9 min 48 sec
   const [showDownsellModal, setShowDownsellModal] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
 
     // 1. EXIT-INTENT TRIGGER (DESKTOP)
     const handleMouseLeave = (e) => {
@@ -45,17 +39,10 @@ export default function BackRedirectStep({ onBackToQuiz }) {
     window.addEventListener('popstate', handlePopState);
 
     return () => {
-      clearInterval(interval);
       document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('popstate', handlePopState);
     };
   }, []);
-
-  const formatTimer = (seconds) => {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  };
 
   const handleCheckout = (isDownsell = false) => {
     trackCheckoutClick(isDownsell ? 'downsell' : 'main');
@@ -78,20 +65,6 @@ export default function BackRedirectStep({ onBackToQuiz }) {
         
         {/* Header Logo */}
         <HeaderLogo />
-
-        {/* TOP FLOATING URGENCY BANNER */}
-        <div className="bg-gradient-to-r from-[#2B0B2E] via-[#FF2A85] to-[#FF007F] text-white rounded-2xl p-3 px-4 shadow-lg flex items-center justify-between gap-2 border border-white/20 animate-pulse">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FFE600] animate-ping" />
-            <span className="text-[11px] sm:text-xs font-black uppercase tracking-wide font-heading">
-              🚨 Beca del 80% Reservada Temporalmente
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full font-mono text-xs font-black text-[#FFE600]">
-            <Clock className="w-3.5 h-3.5 text-[#FFE600]" />
-            <span>{formatTimer(timeLeft)}</span>
-          </div>
-        </div>
 
         {/* MAIN VALUE HERO CARD */}
         <div className="bg-white rounded-[28px] p-5 sm:p-7 shadow-xl border border-[#F0D2E4] space-y-5 text-center quiz-card animate-pop text-[#2B0B2E]">

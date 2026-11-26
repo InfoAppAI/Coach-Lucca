@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Tag, Clock, Trophy, AlertTriangle, ShieldCheck, ArrowRight, Flame, CheckCircle2 } from 'lucide-react';
+import { Tag, Trophy, ShieldCheck, ArrowRight, Flame, CheckCircle2 } from 'lucide-react';
 import HeaderLogo from './HeaderLogo';
 import { ASSETS } from '../data/quizData';
 
 export default function CouponStep({ onClaimCoupon }) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [scratchProgress, setScratchProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(599); // 09:59 countdown
   const scratchCanvasRef = useRef(null);
   const confettiCanvasRef = useRef(null);
   const isScratching = useRef(false);
@@ -187,21 +186,6 @@ export default function CouponStep({ onClaimCoupon }) {
     };
   }, [isUnlocked]);
 
-  // Timer Countdown
-  useEffect(() => {
-    if (!isUnlocked) return;
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [isUnlocked]);
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
   return (
     <div className="relative min-h-dvh overflow-hidden bg-gradient-to-b from-[#FFF5F8] via-[#FAF0F6] to-[#F5EBF2] py-6 px-3.5 sm:px-5 flex flex-col justify-center items-center font-body text-[#2B0B2E]">
       
@@ -215,17 +199,6 @@ export default function CouponStep({ onClaimCoupon }) {
         
         {/* Header Logo */}
         <HeaderLogo />
-
-        {/* URGENCY ALERT BANNER */}
-        <div className="bg-[#FFF5F9] text-[#2B0B2E] rounded-2xl p-2.5 px-4 shadow-sm flex items-center justify-between text-xs font-black font-heading border-2 border-[#FF2A85] animate-pulse">
-          <span className="flex items-center gap-1.5">
-            <AlertTriangle className="w-4 h-4 text-[#FF2A85] shrink-0" />
-            <span className="text-[11px] text-[#2B0B2E]">⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS CON ESTA BECA</span>
-          </span>
-          <span className="font-mono bg-[#FF2A85] px-2 py-0.5 rounded text-white font-black text-xs shadow-2xs">
-            {formatTime(timeLeft)}
-          </span>
-        </div>
 
         {/* Main Card */}
         <div className="bg-white rounded-[28px] p-5 sm:p-7 shadow-xl border border-[#F0D2E4] animate-pop space-y-5 text-center quiz-card text-[#2B0B2E]">
@@ -321,12 +294,6 @@ export default function CouponStep({ onClaimCoupon }) {
                 <p className="text-xs font-bold text-[#FFE4F1] pt-1">🔥 Precio especial exclusivo reservado para tu perfil</p>
               </div>
 
-              {isUnlocked && (
-                <div className="bg-white/10 border border-[#FF5EAA]/40 text-white rounded-xl p-2 flex items-center justify-center gap-2 text-xs font-bold animate-pop shadow-2xs">
-                  <Clock className="w-4 h-4 text-[#FFE600]" />
-                  <span>Tu beca con descuento exclusivo expira en: <span className="font-mono text-sm text-[#FFE600] font-black">{formatTime(timeLeft)}</span></span>
-                </div>
-              )}
             </div>
 
             {/* INTERACTIVE GOLD SCRATCH CANVAS OVERLAY */}

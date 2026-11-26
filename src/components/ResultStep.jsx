@@ -11,8 +11,7 @@ import {
   Gift, 
   Users, 
   Lock,
-  Tag,
-  AlertTriangle
+  Tag
 } from 'lucide-react';
 import { TESTIMONIALS, BEFORE_AFTER_CASES, ASSETS, CHECKOUT_URL } from '../data/quizData';
 import HeaderLogo from './HeaderLogo';
@@ -22,7 +21,6 @@ import LocalPriceNote from './LocalPriceNote';
 
 export default function ResultStep({ userAnswers }) {
   const selectedAge = userAnswers[2] || "30-39";
-  const [timeLeft, setTimeLeft] = useState(599); // 09:59 countdown
   const [recentBuyer, setRecentBuyer] = useState(null);
 
   // REAL-TIME RECENT BUYERS POP-UP NOTIFICATIONS
@@ -32,13 +30,6 @@ export default function ResultStep({ userAnswers }) {
     { name: 'Fernanda S.', city: 'Ciudad de México - México', time: 'hace 3 min' },
     { name: 'Patricia A.', city: 'Bogotá - Colombia', time: 'hace 4 min' },
   ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     let index = 0;
@@ -51,12 +42,6 @@ export default function ResultStep({ userAnswers }) {
 
     return () => clearInterval(popupInterval);
   }, []);
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
 
   return (
     <div className="relative min-h-dvh overflow-hidden bg-gradient-to-b from-[#FFF5F8] via-[#FAF0F6] to-[#F5EBF2] py-6 px-3.5 sm:px-5 flex flex-col justify-center items-center font-body text-[#2B0B2E]">
@@ -82,17 +67,6 @@ export default function ResultStep({ userAnswers }) {
         
         {/* Header Logo */}
         <HeaderLogo />
-
-        {/* URGENCY ALERT BANNER */}
-        <div className="bg-[#FFF5F9] text-[#2B0B2E] rounded-2xl p-2.5 px-4 shadow-sm flex items-center justify-between text-xs font-black font-heading border-2 border-[#FF2A85] animate-pulse">
-          <span className="flex items-center gap-1.5">
-            <AlertTriangle className="w-4 h-4 text-[#FF2A85] shrink-0" />
-            <span className="text-[11px] text-[#2B0B2E]">⚠️ ATENCIÓN: SOLO QUEDAN 2 PLAZAS A ESTE PRECIO</span>
-          </span>
-          <span className="font-mono bg-[#FF2A85] px-2 py-0.5 rounded text-white font-black text-xs shadow-2xs">
-            {formatTime(timeLeft)}
-          </span>
-        </div>
 
         {/* Main Card */}
         <div className="bg-white rounded-[28px] p-5 sm:p-7 shadow-xl border border-[#F0D2E4] animate-pop space-y-5 quiz-card text-[#2B0B2E]">
